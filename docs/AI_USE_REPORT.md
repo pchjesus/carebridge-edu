@@ -41,3 +41,22 @@
 - Agency for Healthcare Research and Quality. (2024). *Use the teach-back method: Tool 5*. https://www.ahrq.gov/health-literacy/improve/precautions/tool5.html
 - Agency for Healthcare Research and Quality. (2024). *Use health education material effectively: Tool 12*. https://www.ahrq.gov/health-literacy/improve/precautions/tool12.html
 - Centers for Disease Control and Prevention. (n.d.). *The CDC clear communication index*. https://www.cdc.gov/ccindex/
+
+
+---
+
+## 2026-11-12 추가 업데이트: v0.2 UI/UX 개편
+
+**사용 도구·모델·사용일:** ChatGPT(GPT-6), GitHub 연결 도구, 디자인 아틀라스(공개 UI 패턴 참고), GitHub Pages 빌드·Actions 확인. 사용일은 2026-11-12. Codex를 통한 직접 코드 작성이나 테스트는 이번 단계에서 수행하지 않음.
+
+**입력 자료 범위:** 기존 3조 워크시트, 3단계 아이디어 내기 지시, 기존 MVP 저장소의 \`index.html\`·README·문서, 사용자의 정보 위계·모션·사이드바·온보딩·우선순위 요구, 디자인 아틀라스의 인터랙션·트랜지션·CTA 레퍼런스. 실제 환자정보나 병원 내부 자료는 입력하지 않음.
+
+**핵심 프롬프트 (이번 추가 요청 요약):** “기존 기능을 유지하면서 디자인 아틀라스의 모션, 토글, CTA 등의 패턴을 사용자 특성에 맞게 적극 활용하라. 각 화면은 해야 할 일과 버튼의 결과가 명확해야 하고 과도한 스크롤을 줄여야 한다. 접이식 사이드바와 사용 안내를 넣고 기능 우선순위를 다시 정하며, main에 반영해 Pages로 배포하라.” (여러 문장의 사용자 요청을 보고용으로 요약한 것이며 단일 프롬프트 원문이 아님.)
+
+**선정·수정 과정:** 간호사와 환자 화면을 역할별로 분리하고, 3단계 사용 흐름·간결한 홈 CTA·선택 환자와 교육 주제·큰 안내문·간호사 최종 확인 순으로 정보 위계를 재정의함. 애니메이션은 작업 상태와 화면 전환을 설명할 정도로 짧게 적용하며 운영체제의 Reduce Motion 설정을 존중함. 모바일에서는 접힌 사이드바 대신 라벨이 표시되는 아이콘 내비게이션을 제공함.
+
+**최종 판단 근거와 한계:** 핵심 기능은 DOM 모의 흐름 테스트(5개 화면 렌더링, 교육 시작·진행·자기 점검 제출·구두 확인·상태 초기화)로 검토함. 이는 실제 브라우저 시각 테스트나 의료적 유효성 입증을 대체하지 않음. 화면별 배치가 모든 해상도/보조기기에서 적절한지, 의료정보 정확성과 병원 승인 여부, 실제 간호사·환자 사용성, 음성 품질은 추가 검증해야 함. 실증 데이터 없이 교육시간 단축·이해도 향상 등을 **기대효과(미검증)** 로 표시하는 원칙은 유지함.
+
+디자인 레퍼런스: Design Atlas. (n.d.). *Design Atlas: A living dictionary of motion, effects, components and UX terms*. https://design.solhun.com/
+
+자세한 설계와 우선순위: [UX_V02_DESIGN_DECISIONS.md](UX_V02_DESIGN_DECISIONS.md).
