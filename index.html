@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f9fd">
+<title>CareBridge EDU | 입·퇴원 교육지원 MVP</title>
+<style>
+:root{--bg:#f6f8fc;--panel:#fff;--ink:#18253b;--muted:#617087;--line:#dde5ef;--blue:#2357ce;--pale:#eef3ff;--teal:#0a8176;--palegreen:#e9f8f4;--orange:#a95b17;--paleorange:#fff5e8;--shadow:0 12px 35px rgba(24,42,76,.06);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--ink)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);line-height:1.57}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}a{color:var(--blue)}:focus-visible{outline:3px solid #e3a332;outline-offset:3px}
+.layout{display:grid;grid-template-columns:246px minmax(0,1fr);min-height:100vh}.sidebar{background:#fff;border-right:1px solid var(--line);padding:26px 17px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:15px}.logo{display:flex;gap:10px;align-items:center;padding:7px 8px 21px}.mark{display:grid;place-items:center;border-radius:12px;width:42px;height:42px;background:var(--blue);color:white;font-weight:900;font-size:24px}.logo strong{display:block;line-height:1.1;font-size:18px;letter-spacing:-.5px}.logo small{color:var(--muted);font-size:12px}.nav{display:flex;flex-direction:column;gap:5px}.nav button{width:100%;text-align:left;border:0;background:transparent;color:var(--muted);border-radius:11px;padding:13px 15px;font-weight:650}.nav button.active,.nav button:hover{background:var(--pale);color:var(--blue)}.sidefoot{margin-top:auto;border:1px solid var(--line);border-radius:12px;background:#fafcff;padding:13px;font-size:12px;color:var(--muted)}
+.main{min-width:0}.topbar{height:75px;background:rgba(255,255,255,.9);border-bottom:1px solid var(--line);padding:0 34px;display:flex;justify-content:space-between;align-items:center;gap:12px}.topbar strong{font-size:15px}.tag{border-radius:100px;background:var(--pale);color:var(--blue);padding:5px 11px;font-size:12px;font-weight:750;white-space:nowrap}.tag.warn{background:var(--paleorange);color:var(--orange)}.content{max-width:1160px;padding:34px 34px 80px;margin:0 auto}.eyebrow{color:var(--blue);font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}h1{font-size:clamp(28px,3vw,39px);line-height:1.25;letter-spacing:-1.4px;margin:10px 0 12px}h2{font-size:23px;letter-spacing:-.6px;margin:0 0 15px}h3{font-size:17px;margin:0 0 8px;letter-spacing:-.3px}p{margin:0 0 12px;color:var(--muted)}.lead{font-size:16px;max-width:800px}.hero{padding:31px;border-radius:22px;background:linear-gradient(114deg,#edf3ff,#fff 64%,#eaf9f6);border:1px solid #dce6f6;margin-bottom:23px}.hero p{max-width:740px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:21px}.btn{background:var(--blue);color:white;border:1px solid var(--blue);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:750;min-height:43px}.btn:hover:not(:disabled){filter:brightness(.94)}.btn.ghost{color:var(--blue);background:#fff;border-color:#bfcef1}.btn.subtle{background:#f4f7fd;color:#354b71;border-color:#dce5f3}.btn.small{font-size:12px;padding:8px 11px;min-height:35px}.btn.danger{color:#9e3037;background:#fff6f5;border-color:#f2cbcb}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.card{background:var(--panel);padding:22px;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow);min-width:0}.card .num{font-size:30px;font-weight:850;letter-spacing:-1px;margin:5px 0;color:var(--ink)}.card .label{font-size:12px;color:var(--muted);font-weight:650}.section{margin-top:27px}.workflow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stepbox{border-radius:15px;background:#fff;border:1px solid var(--line);padding:20px}.stepnum{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:10px;background:var(--pale);color:var(--blue);font-weight:800;margin-bottom:12px}.small{font-size:13px;color:var(--muted)}.note{border-radius:12px;padding:14px 16px;background:#f5f8ff;border:1px solid #d7e3fa;color:#405372;font-size:13px}.note.amber{background:var(--paleorange);border-color:#f0d7b6;color:#85551d}.note.green{background:var(--palegreen);border-color:#c2e8de;color:#086b63}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}.two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:17px}.nurse-layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:18px}.patient-list{display:flex;flex-direction:column;gap:8px}.patient-row{border:1px solid var(--line);border-radius:12px;background:#fff;text-align:left;padding:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%}.patient-row.selected{border-color:#8eaef6;background:#f2f6ff}.patient-row strong{font-size:14px}.muted{color:var(--muted)}.tiny{font-size:12px}.status{font-size:11px;font-weight:750;padding:4px 8px;border-radius:100px;background:#eff2f7;color:#58677b;white-space:nowrap}.status.progress{background:#eaf2ff;color:#2659c0}.status.review{background:#fff0d9;color:#95520d}.status.complete{background:#def5ea;color:#08754f}.group{margin:17px 0;padding-top:15px;border-top:1px solid var(--line)}.module{display:flex;gap:13px;padding:14px;border:1px solid var(--line);border-radius:10px;margin:9px 0;align-items:flex-start}.module input{width:19px;height:19px;accent-color:var(--blue);margin-top:2px}.module strong{display:block;font-size:14px}.info{display:grid;grid-template-columns:1fr 1fr;gap:12px}.info div{border-radius:10px;background:#f7f9fd;padding:11px 13px}.info span{display:block;color:var(--muted);font-size:11px}.info strong{font-size:14px}.field{display:block;margin:10px 0 6px;font-weight:700;font-size:13px}.textbox{width:100%;border:1px solid #cdd8e7;border-radius:9px;background:#fff;padding:12px;min-height:86px;resize:vertical;color:var(--ink)}.patient-stage{max-width:860px;margin:auto}.reader-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:16px 0}.control-label{font-size:12px;font-weight:700;color:var(--muted)}.switches{display:flex;gap:5px;padding:4px;background:#edf1f8;border-radius:11px}.switches button{border:0;background:transparent;border-radius:8px;padding:7px 9px;color:#53637c;font-size:13px;min-height:36px}.switches button.selected{background:#fff;color:var(--blue);box-shadow:0 2px 7px #d2dced;font-weight:800}.reader{border:2px solid #dce7fa;border-radius:20px;background:#fff;padding:30px;min-height:285px}.reader.high{background:#111821;color:#fff;border-color:#3a4654}.reader.high p,.reader.high .small{color:#f4f5f7}.reader .reader-title{font-size:1.6em;font-weight:850;line-height:1.3;letter-spacing:-.8px;margin:4px 0 17px}.reader .reader-text{font-size:1.18em;line-height:1.9;white-space:pre-line;color:inherit}.reader .reader-kicker{font-size:.85em;color:var(--blue);font-weight:800}.reader.high .reader-kicker{color:#b8d4ff}.reader.f-large{font-size:20px}.reader.f-xlarge{font-size:24px}.progress-rail{height:9px;background:#e4eaf3;border-radius:99px;overflow:hidden;margin:8px 0 17px}.progress-rail span{display:block;height:100%;background:var(--teal);transition:width .15s}.answer-option{display:flex;align-items:center;gap:12px;border:1px solid #dbe3ef;border-radius:12px;padding:14px;margin:9px 0;cursor:pointer;font-size:15px}.answer-option:has(input:checked){border-color:#79a0ed;background:#edf3ff}.answer-option input{accent-color:var(--blue);width:20px;height:20px}.checkrow{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin:10px 0}.checkrow input{width:18px;height:18px;accent-color:var(--blue);margin-top:2px}.evidence{display:grid;grid-template-columns:1fr 1fr;gap:16px}.evidence .card{height:100%}.citation{font-size:12px;color:var(--muted);margin:7px 0}.ideas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.idea{border:1px solid var(--line);border-radius:13px;background:#fff;padding:16px}.idea b{display:block;margin:0 0 6px}.list{padding-left:18px;color:var(--muted)}.list li{margin:6px 0}.footer{margin-top:35px;color:var(--muted);font-size:12px}.hide{display:none!important}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{height:auto;position:static;padding:11px 20px;flex-direction:row;align-items:center;border-bottom:1px solid var(--line);border-right:0}.logo{padding:0}.nav{flex:1;flex-direction:row;overflow-x:auto}.nav button{white-space:nowrap;width:auto}.sidefoot{display:none}.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.topbar{height:58px;padding:0 18px}.content{padding:22px 16px 60px}.sidebar{display:block;padding:12px}.logo{padding:0 5px 10px}.nav button{font-size:12px;padding:9px 11px}.hero{padding:22px}.cards,.workflow,.two-col,.nurse-layout,.info,.evidence,.ideas{grid-template-columns:1fr}.card{padding:18px}.reader{padding:19px}.reader.f-xlarge{font-size:21px}.topbar .tag{font-size:10px}.hero-actions .btn{flex:1}.nurse-layout{gap:11px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+ <div class="logo"><div class="mark" aria-hidden="true">C</div><div><strong>CareBridge EDU</strong><small>입·퇴원 교육지원 · 시연용</small></div></div>
+ <nav class="nav" aria-label="주요 메뉴">
+  <button data-nav="home" id="nav-home">개요</button>
+  <button data-nav="nurse" id="nav-nurse">의료진 대시보드</button>
+  <button data-nav="patient" id="nav-patient">환자 교육 화면</button>
+  <button data-nav="review" id="nav-review">최종 이해 확인</button>
+  <button data-nav="about" id="nav-about">아이디어·근거</button>
+ </nav>
+ <div class="sidefoot"><strong>수업용 프로토타입</strong><div>가상 환자·가상 교육자료만 사용합니다. 실제 의료기관의 처방, 동의, 공식 간호기록을 대체하지 않습니다.</div></div>
+</aside>
+<div class="main">
+<header class="topbar"><strong>2026-2 첨단기술과 간호 · 3조</strong><span class="tag warn">MVP 시연 · 임상 검증 전</span></header>
+<main class="content" id="app" aria-live="polite"></main>
+</div>
+</div>
+<script>
+(function(){
+"use strict";
+var DATA=[
+{id:"A",name:"환자 A",age:68,dept:"통원수술센터",phase:"입원",context:"수술 전 안내",modules:[
+{id:"a1",title:"입원·병동 이용",text:"입원 중 궁금한 점이 있거나 도움이 필요하면 담당 간호사에게 알려주세요. 혼자 이동하기 어려울 때는 직원의 도움을 요청하세요.",ask:"도움이 필요할 때 누구에게 말씀하시겠어요?"},
+{id:"a2",title:"수술·검사 준비",text:"검사와 수술 전 준비사항은 환자와 시술에 따라 달라집니다. 금식 시작 시각과 복용 중인 약의 조정 여부는 담당 의료진에게 개별적으로 확인하세요.",ask:"금식 시간이나 약에 관해 누구에게 확인하시겠어요?"},
+{id:"a3",title:"입원 중 확인사항",text:"검사 일정이나 설명을 잘 이해하지 못했다면 다시 질문해 주세요. 이 안내만으로 수술 전 준비가 완료된 것은 아닙니다.",ask:"설명을 이해하지 못했을 때 어떻게 하시겠어요?"}]},
+{id:"B",name:"환자 B",age:73,dept:"외과병동",phase:"퇴원",context:"퇴원 전 교육",modules:[
+{id:"b1",title:"퇴원약 확인",text:"퇴원 시 제공받는 약의 이름, 복용 방법, 주의사항을 담당 간호사 또는 약사와 확인하세요. 임의로 약 복용 방법을 바꾸지 마세요.",ask:"약 복용 방법이 헷갈릴 때 어떻게 하시겠어요?"},
+{id:"b2",title:"주의 증상과 문의",text:"수술 부위나 전신 상태에 관해 의료진이 안내한 이상 증상을 확인하세요. 증상 발생 시 안내받은 병원 연락처로 문의하고, 긴급한 상황에는 즉시 응급의료 도움을 받으세요.",ask:"의료진이 안내한 주의 증상이 생기면 어떻게 하시겠어요?"},
+{id:"b3",title:"외래·개별 지시 확인",text:"외래 일정과 환자별 활동·식이·상처 관리 지침은 퇴원 전 담당 의료진과 확인하세요. 이 화면은 개별 처방을 대신하지 않습니다.",ask:"퇴원 전에 꼭 확인해야 할 개별 안내는 무엇인가요?"}]},
+{id:"C",name:"환자 C",age:45,dept:"혈액종양내과",phase:"입원",context:"입원 기본 안내",modules:[
+{id:"c1",title:"병동 이용 및 문의",text:"입원 중 불편함이나 궁금한 사항이 있으면 담당 간호사에게 알려주세요. 병동 이용 규칙은 병원 안내에 따라 확인하세요.",ask:"입원 중 질문이 생기면 어떻게 하시겠어요?"},
+{id:"c2",title:"감염 관련 주의사항 확인",text:"손 위생 등 기본적인 감염 예방 행동에 관해 의료진의 안내를 받으세요. 환자별 감염 예방 조치는 치료 상태에 따라 다를 수 있으니 반드시 확인해야 합니다.",ask:"감염 예방에 관한 개인별 주의사항은 어디서 확인하시겠어요?"},
+{id:"c3",title:"증상 및 검사 일정",text:"새로운 증상이나 몸 상태의 변화를 느끼면 즉시 담당 의료진에게 알리세요. 검사·치료 일정은 병동에서 개별 안내받으세요.",ask:"새로운 증상이 생기면 누구에게 말씀하시겠어요?"}]}];
+var state={page:"home",active:"A",phase:"intro",index:0,font:"normal",speed:.8,contrast:false,reviewTopic:"",listening:false,progress:{},selected:{},notes:{}};
+DATA.forEach(function(p){state.selected[p.id]=p.modules.map(function(m){return m.id});state.progress[p.id]={status:"wait",answers:{},question:"",completed:false,verified:false};state.notes[p.id]=""});
+var app=document.getElementById("app");
+function patient(){return DATA.find(function(p){return p.id===state.active})}
+function prog(){return state.progress[state.active]}
+function selectedModules(){return patient().modules.filter(function(m){return state.selected[state.active].indexOf(m.id)>=0})}
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function badge(s){return '<span class="status '+(s==="verified"?"complete":s==="review"||s==="needs"?"review":s==="progress"?"progress":"")+'">'+({wait:"교육 대기",progress:"교육 진행 중",review:"구두 확인 대기",needs:"추가 설명 필요",verified:"최종 확인 완료"}[s]||s)+'</span>'}
+function stopSpeech(){if("speechSynthesis" in window){window.speechSynthesis.cancel()}state.listening=false}
+function jump(page){stopSpeech();state.page=page;render();window.scrollTo(0,0)}
+function setPatient(id){if(!DATA.some(function(p){return p.id===id}))return;stopSpeech();state.active=id;state.phase=state.progress[id].completed?"finished":"intro";state.index=0;render()}
+function footer(){return '<div class="footer">CareBridge EDU · 학습·조별 논의 목적의 비상업적 시연 · 실제 환자정보 입력 금지 · 자료의 임상 적용 전 의료진 검토 필수</div>'}
+function home(){
+var statuses=DATA.map(function(p){return state.progress[p.id].status});
+var waiting=statuses.filter(function(s){return s==="wait"}).length, reviewing=statuses.filter(function(s){return s==="review"||s==="needs"}).length, verified=statuses.filter(function(s){return s==="verified"}).length;
+return '<section class="hero"><div class="eyebrow">CAREBRIDGE EDU · CONCEPT MVP</div><h1>반복 설명은 더 간편하게,<br>이해도 확인은 더 정확하게.</h1><p class="lead">입·퇴원이 잦은 병동에서 간호사가 교육 주제를 선택하면, 환자가 큰 글씨·음성 안내로 학습하고 간호사가 마지막에 직접 이해도를 확인하는 교육지원 프로토타입입니다.</p><div class="hero-actions"><button class="btn" data-nav="nurse">의료진 화면 시작하기 →</button><button class="btn ghost" data-nav="patient">환자 교육 체험하기</button></div></section>'
++'<div class="note amber"><strong>임상 검증 전 MVP</strong> · 안내문은 가상 예시이며 약물·금식·상처관리 등 실제 지시는 병원 및 담당 의료진의 승인된 내용을 사용해야 합니다. 퇴원 후 추적관리 기능은 포함하지 않습니다.</div>'
++'<section class="section"><h2>시연 상태 <span class="small">· 가상 환자 3명, 실제 임상 데이터 아님</span></h2><div class="cards"><div class="card"><div class="label">교육 대기</div><div class="num">'+waiting+'</div><span class="small">설정 또는 시작 전</span></div><div class="card"><div class="label">간호사 확인 필요</div><div class="num">'+reviewing+'</div><span class="small">이해 확인·보충 설명</span></div><div class="card"><div class="label">구두 확인 완료</div><div class="num">'+verified+'</div><span class="small">간호사 확인 후에만 표시</span></div></div></section>'
++'<section class="section"><h2>서비스 흐름</h2><div class="workflow">'+[['01','교육 설정','간호사가 입·퇴원 항목을 선택'],['02','맞춤 설명','환자가 글씨·음성 속도를 조절'],['03','자기 점검','환자가 이해 및 질문 항목 표시'],['04','최종 확인','간호사가 Teach-back으로 확인']].map(function(a){return '<div class="stepbox"><div class="stepnum">'+a[0]+'</div><h3>'+a[1]+'</h3><div class="small">'+a[2]+'</div></div>'}).join('')+'</div></section>'
++'<section class="section evidence"><div class="card"><span class="tag">근거가 있는 교육 원칙</span><h3 style="margin-top:13px">쉬운 설명과 Teach-back</h3><p class="small">AHRQ와 CDC는 명확한 환자교육 자료 구성과 환자가 자신의 말로 설명하도록 하는 이해 확인 전략을 안내합니다. 이는 설계 원칙의 근거입니다.</p></div><div class="card"><span class="tag warn">프로그램 기대효과 · 미검증</span><h3 style="margin-top:13px">간호 업무 부담 완화 등</h3><p class="small">시간 절감, 정보 누락 감소, 환자 이해도 향상은 <strong>가설적 기대효과</strong>이며 이 MVP로 검증된 성과는 없습니다.</p></div></section>'+footer()
+}
+function nurse(){
+var p=patient(), pr=prog(), count=selectedModules().length;
+return '<div class="eyebrow">NURSE WORKSPACE</div><h1>의료진 대시보드</h1><p class="lead">가상 환자를 선택하고 필요한 입·퇴원 교육 모듈을 지정하세요. 실제 병원 EMR과는 연결되지 않습니다.</p>'
++'<div class="nurse-layout section"><section class="card"><h3>가상 환자 목록</h3><div class="patient-list">'+DATA.map(function(x){return '<button class="patient-row '+(x.id===state.active?"selected":"")+'" data-patient="'+x.id+'" aria-pressed="'+(x.id===state.active)+'"><span><strong>'+x.name+'</strong><br><span class="tiny muted">'+x.dept+' · '+x.phase+'</span></span>'+badge(state.progress[x.id].status)+'</button>'}).join('')+'</div><div class="group small">환자 A/B/C는 과제 시연을 위한 가상 사례입니다. 실제 식별정보는 입력하지 마세요.</div></section>'
++'<section class="card"><div class="row between"><div><div class="eyebrow">교육 설정</div><h2 style="margin:6px 0 12px">'+p.name+' · '+p.context+'</h2></div>'+badge(pr.status)+'</div><div class="info"><div><span>진료 부서</span><strong>'+p.dept+'</strong></div><div><span>교육 시점</span><strong>'+p.phase+' 시</strong></div></div><div class="group"><h3>교육 주제 선택 <span class="small">('+count+'/'+p.modules.length+')</span></h3><p class="small">선택한 내용만 환자 화면에 나타납니다. 병원 승인 전에는 실제 교육에 사용하면 안 됩니다.</p>'
++p.modules.map(function(m){return '<label class="module"><input type="checkbox" data-module="'+m.id+'" '+(state.selected[p.id].indexOf(m.id)>=0?"checked":"")+'><span><strong>'+m.title+'</strong><span class="small">'+m.text.substring(0,60)+'…</span></span></label>'}).join('')+'</div>'
++'<div class="note">환자 연령과 관계없이 글자 크기·음성 속도를 직접 선택하도록 설계했습니다. 고령자를 이유로 일괄 설정하지 않습니다.</div><div class="row" style="margin-top:17px"><button class="btn" data-action="begin" '+(count?"":"disabled")+'>선택한 교육 시작하기</button><button class="btn ghost" data-nav="review">교육 결과·최종 확인</button></div></section></div>'+footer()
+}
+function readerControls(){
+return '<div class="reader-controls"><span class="control-label">글씨 크기</span><div class="switches" role="group" aria-label="글씨 크기"><button data-font="normal" class="'+(state.font==="normal"?"selected":"")+'">기본</button><button data-font="large" class="'+(state.font==="large"?"selected":"")+'">크게</button><button data-font="xlarge" class="'+(state.font==="xlarge"?"selected":"")+'">아주 크게</button></div><span class="control-label">음성 속도</span><div class="switches" role="group" aria-label="음성 속도"><button data-speed=".8" class="'+(state.speed===.8?"selected":"")+'">천천히</button><button data-speed="1" class="'+(state.speed===1?"selected":"")+'">보통</button><button data-speed="1.2" class="'+(state.speed===1.2?"selected":"")+'">빠르게</button></div><button class="btn small subtle" data-action="contrast">고대비 '+(state.contrast?"끄기":"켜기")+'</button></div>'
+}
+function patientPage(){
+var p=patient(),pr=prog(),mods=selectedModules();
+var h='<div class="patient-stage"><div class="eyebrow">PATIENT EDUCATION DEMO</div><h1>환자 교육 화면</h1><p class="lead">'+p.name+' · '+p.dept+' · '+p.phase+' 교육 <span class="tag">가상 사례</span></p><div class="note amber">이 교육은 시연용 예시입니다. 실제 금식, 처방약, 검사·수술, 퇴원 지침은 의료진에게 별도로 확인하세요.</div>'+readerControls();
+if(!mods.length)return h+'<section class="card"><h2>선택된 교육이 없어요</h2><button class="btn" data-nav="nurse">의료진 화면에서 선택하기</button></section></div>'+footer();
+if(state.phase==="intro"&&!pr.completed){
+h+='<section class="card"><div class="eyebrow">학습 준비</div><h2>'+p.context+'</h2><p>안내 주제는 '+mods.length+'개입니다. 한 화면에 한 가지씩 읽거나 들을 수 있어요. 이해가 어려운 내용은 나중에 간호사에게 질문할 수 있어요.</p><div class="row"><button class="btn" data-action="start-reading">교육 시작</button><button class="btn ghost" data-nav="nurse">설정 화면</button></div></section>';
+}else if(state.phase==="reading"&&!pr.completed){
+var m=mods[Math.min(state.index,mods.length-1)];
+h+='<section class="card"><div class="row between"><strong>'+ (state.index+1)+' / '+mods.length+' 번째 안내</strong><span class="small">'+p.phase+' 시 교육</span></div><div class="progress-rail" role="progressbar" aria-valuenow="'+(state.index+1)+'" aria-valuemin="0" aria-valuemax="'+mods.length+'"><span style="width:'+((state.index+1)/mods.length*100)+'%"></span></div><div class="reader f-'+state.font+(state.contrast?" high":"")+'"><div class="reader-kicker">꼭 확인할 내용</div><div class="reader-title">'+m.title+'</div><div class="reader-text">'+esc(m.text)+'</div></div><div class="row" style="margin-top:17px"><button class="btn ghost" data-action="speak">▶ 읽어주기</button><button class="btn subtle" data-action="pause-speech">일시정지/계속</button><button class="btn subtle" data-action="stop-speech">■ 정지</button></div><div class="row between" style="margin-top:19px"><button class="btn ghost" data-action="prev" '+(state.index===0?"disabled":"")+'>← 이전</button><button class="btn" data-action="next">'+(state.index===mods.length-1?"이해 확인으로 →":"다음 안내 →")+'</button></div><div class="small" style="margin-top:12px">음성 기능은 기기의 브라우저·운영체제 한국어 음성 지원 여부에 따라 다르게 동작할 수 있습니다.</div></section>';
+}else if(state.phase==="check"&&!pr.completed){
+h+='<section class="card"><div class="eyebrow">이해도 자기 점검</div><h2>이해되지 않은 내용을 표시해 주세요</h2><p>이 단계는 환자의 자기 보고를 수집합니다. 정답 판정이나 실제 이해 확인을 자동으로 수행하지 않습니다.</p>'
++mods.map(function(m,i){var v=pr.answers[m.id]||"";return '<div class="group"><h3>'+(i+1)+'. '+m.title+'</h3><p class="small">'+m.ask+'</p><label class="answer-option"><input type="radio" name="answer-'+m.id+'" value="yes" data-answer="'+m.id+'" '+(v==="yes"?"checked":"")+'>설명을 이해했어요</label><label class="answer-option"><input type="radio" name="answer-'+m.id+'" value="again" data-answer="'+m.id+'" '+(v==="again"?"checked":"")+'>다시 설명이 필요해요</label></div>'}).join('')
++'<label class="field" for="patient-question">간호사에게 질문하고 싶은 내용 (선택)</label><textarea class="textbox" id="patient-question" placeholder="예: 복용약을 다시 확인하고 싶어요.">'+esc(pr.question)+'</textarea><div class="row between" style="margin-top:17px"><button class="btn ghost" data-action="back-to-reading">이전 안내로</button><button class="btn" data-action="submit-check">확인 내용 간호사에게 전달</button></div><p class="small" id="validation" role="status"></p></section>';
+}else{
+h+='<section class="card"><span class="tag">교육 화면 종료</span><h2 style="margin-top:15px">안내 내용을 확인했어요.</h2><p>환자 화면에서의 선택은 교육의 완료와 실제 이해를 보장하지 않습니다. 간호사가 직접 이해한 내용을 확인하고 필요하면 다시 설명합니다.</p><div class="row">'+badge(pr.status)+'<button class="btn ghost" data-action="review-again">교육 다시 보기</button><button class="btn" data-nav="review">간호사 확인 화면</button></div></section>';
+}
+return h+'</div>'+footer()
+}
+function review(){
+var p=patient(),pr=prog(),mods=selectedModules();
+var asked=mods.filter(function(m){return pr.answers[m.id]==="again"}), missing=mods.filter(function(m){return !pr.answers[m.id]});
+var completed=pr.completed;
+return '<div class="eyebrow">NURSE TEACH-BACK REVIEW</div><h1>최종 이해 확인</h1><p class="lead">환자가 교육을 보았다는 사실과 실제 이해 여부를 구분해요. 간호사가 직접 질문하고 필요한 내용을 보충한 뒤 최종 확인합니다.</p><div class="nurse-layout section"><section class="card"><h3>확인할 환자</h3><div class="patient-list">'+DATA.map(function(x){return '<button class="patient-row '+(state.active===x.id?"selected":"")+'" data-patient="'+x.id+'"><span><strong>'+x.name+'</strong><br><span class="tiny muted">'+x.dept+' · '+x.phase+'</span></span>'+badge(state.progress[x.id].status)+'</button>'}).join('')+'</div></section><section class="card"><div class="row between"><h2>'+p.name+' 교육 결과</h2>'+badge(pr.status)+'</div><div class="info"><div><span>환자 화면 응답</span><strong>'+Object.keys(pr.answers).length+' / '+mods.length+' 항목</strong></div><div><span>재설명 요청</span><strong>'+asked.length+' 항목</strong></div></div><div class="group"><h3>환자가 표시한 결과</h3>'+mods.map(function(m){var v=pr.answers[m.id];return '<div class="row between" style="padding:11px 0;border-bottom:1px solid var(--line)"><strong style="font-size:14px">'+m.title+'</strong><span class="status '+(v==="again"?"review":"")+'">'+(v==="again"?"재설명 요청":v==="yes"?"이해했다고 응답":"미응답")+'</span></div>'}).join('')+'</div>'
++(pr.question?'<div class="note"><strong>환자 질문:</strong> '+esc(pr.question)+'</div>':'')
++'<div class="group"><h3>Teach-back 구두 확인</h3><p class="small">환자가 자신의 말로 주요 내용을 설명하도록 요청한 뒤 간호사가 결과를 판단합니다.</p>'
++mods.map(function(m){return '<label class="checkrow"><input type="checkbox" class="teachcheck" value="'+m.id+'" '+(pr.verified?"checked":"")+'><span><strong>'+m.title+'</strong><br><span class="small">확인 질문: '+m.ask+'</span></span></label>'}).join('')
++'<label class="field" for="nurse-note">보충교육·확인 메모 (시연 세션에만 유지)</label><textarea class="textbox" id="nurse-note" placeholder="실제 환자정보를 쓰지 마세요.">'+esc(state.notes[p.id])+'</textarea>'
++'<div class="row" style="margin-top:15px"><button class="btn" data-action="verify" '+(!completed||!mods.length||missing.length?"disabled":"")+'>구두 확인 완료로 표시</button><button class="btn ghost" data-action="needs" '+(!completed?"disabled":"")+'>추가 설명 필요</button><button class="btn subtle" data-nav="patient">환자 화면 보기</button></div><p class="small" id="review-validation" role="status"></p></div>'
++'<div class="note amber"><strong>안전 경계:</strong> 체크 표시 자체가 임상적 이해를 증명하지는 않습니다. 실제 적용 시에는 간호사의 대면 확인, 기관 절차, 공식 기록 시스템이 필요합니다.</div></section></div>'+footer();
+}
+function about(){
+var ideas=[["교육 모듈 조합","공통·진료과·상황별 교육을 선택하여 누락 위험을 줄이도록 설계"],["맞춤형 읽기·듣기","큰 글씨, 고대비, 속도 조절, 반복 듣기로 접근성 지원"],["환자 자기 점검","모르는 항목과 질문을 표시하여 간호사에게 전달"],["간호사 Teach-back","환자의 말로 설명하도록 요청하고 간호사가 최종 판단"],["교육 상태 대시보드","교육 대기·진행·확인 필요 상태를 업무 화면에서 조회"],["표준자료 승인 흐름","실제 운영 전 병원 승인 자료만 발행하도록 관리하는 차기 과제"],["종이·오프라인 대체","디지털 이용이 어려운 환자를 위한 대면·인쇄 대체 경로"],["사용성·효과 평가","교육 시간, 누락, 이해도, 만족도 등을 비교 연구로 측정"]];
+return '<div class="eyebrow">COURSE WORKSHEET · STEP 3</div><h1>아이디어 내기</h1><p class="lead">입·퇴원 교육을 표준화하면서도 간호사의 임상적 판단과 환자의 개별 요구를 유지하는 방향으로 구상했습니다.</p>'
++'<section class="card"><h2>HMW 발상 질문</h2><p style="font-size:19px;font-weight:750;color:var(--ink)">어떻게 하면 입·퇴원이 잦은 병동의 간호사가 반복적인 설명에 쓰는 시간을 줄이면서, 환자 특성에 맞는 교육을 누락 없이 제공하고 실제 이해 여부까지 확인할 수 있을까?</p></section>'
++'<section class="section"><h2>브레인라이팅 아이디어 8개 <span class="tag">조원 의견 추가 예정</span></h2><div class="ideas">'+ideas.map(function(a,i){return '<div class="idea"><b>'+(i+1)+'. '+a[0]+'</b><div class="small">'+a[1]+'</div></div>'}).join('')+'</div></section>'
++'<section class="section evidence"><div class="card"><h3>문헌에서 확인되는 원칙</h3><p class="small">건강정보를 이해하기 쉽게 제공하고, 교육 내용을 대화로 확인하도록 권고하는 자료가 있습니다. 이 근거를 MVP 설계에 사용했습니다.</p><ul class="list"><li>AHRQ: Teach-back으로 환자 이해 확인</li><li>AHRQ: 교육자료는 대화와 이해 확인의 보조수단</li><li>CDC: 핵심 메시지와 쉬운 언어, 정보 구조화</li></ul></div><div class="card"><h3>서비스 자체의 기대효과 (미검증)</h3><p class="small">교육 시간 절감, 반복 설명 감소, 교육 누락 감소, 교육 이해도 상승, 간호사 부담 완화는 아직 측정하지 않았습니다.</p><div class="note amber">본 시제품의 임상 효과나 안전성을 입증하는 데이터는 없습니다. 실제 환자 대상 사용 전 검증과 승인이 필요합니다.</div></div></section>'
++'<section class="section card"><h2>구현 범위와 한계</h2><p>구현: 가상 환자 선택, 교육 항목 설정, 브라우저 음성 안내, 크기·속도·대비 조정, 자기 점검, 간호사 구두 확인 화면.</p><p>미구현: 실제 EMR 연동, 로그인·권한, 의료진 검토·승인 시스템, 공식 간호기록, 개인정보 보호 검증, 다국어, 의료기관 임상 검증, 실제 처방별 분기.</p><p>보안: 실제 데이터 전송·서버 저장은 없으며 새로고침 시 시연 상태가 초기화됩니다. 민감정보를 입력하지 마세요.</p></section>'
++'<section class="section card"><h2>참고문헌 (APA 7판)</h2><div class="citation">Agency for Healthcare Research and Quality. (2024). <em>Health literacy universal precautions toolkit</em> (3rd ed.). <a target="_blank" rel="noopener noreferrer" href="https://www.ahrq.gov/health-literacy/improve/precautions/toolkit.html">AHRQ</a></div><div class="citation">Agency for Healthcare Research and Quality. (2024). <em>Use the teach-back method: Tool 5</em>. <a href="https://www.ahrq.gov/health-literacy/improve/precautions/tool5.html" target="_blank" rel="noopener noreferrer">AHRQ</a></div><div class="citation">Agency for Healthcare Research and Quality. (2024). <em>Use health education material effectively: Tool 12</em>. <a href="https://www.ahrq.gov/health-literacy/improve/precautions/tool12.html" target="_blank" rel="noopener noreferrer">AHRQ</a></div><div class="citation">Centers for Disease Control and Prevention. (n.d.). <em>The CDC clear communication index</em>. <a href="https://www.cdc.gov/ccindex/" target="_blank" rel="noopener noreferrer">CDC</a></div></section>'+footer();
+}
+function render(){
+document.querySelectorAll(".nav button").forEach(function(b){var yes=b.getAttribute("data-nav")===state.page;b.classList.toggle("active",yes);if(yes)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+app.innerHTML=({home:home,nurse:nurse,patient:patientPage,review:review,about:about}[state.page]||home)();
+}
+function speak(){var p=patient(),mods=selectedModules(),m=mods[Math.min(state.index,mods.length-1)];if(!m)return;if(!("speechSynthesis" in window)){alert("현재 브라우저는 음성 읽기를 지원하지 않습니다.");return}stopSpeech();var u=new SpeechSynthesisUtterance(m.title+". "+m.text);u.lang="ko-KR";u.rate=state.speed;u.pitch=1;u.onend=function(){state.listening=false};u.onerror=function(){state.listening=false};window.speechSynthesis.speak(u);state.listening=true}
+document.addEventListener("click",function(e){
+var b=e.target.closest("button");if(!b)return;
+if(b.dataset.nav){jump(b.dataset.nav);return}
+if(b.dataset.patient){setPatient(b.dataset.patient);return}
+if(b.dataset.font){state.font=b.dataset.font;render();return}
+if(b.dataset.speed){state.speed=Number(b.dataset.speed);stopSpeech();render();return}
+var a=b.dataset.action;if(!a)return;
+var pr=prog(),mods=selectedModules();
+if(a==="contrast"){state.contrast=!state.contrast;render()}
+else if(a==="begin"||a==="start-reading"){if(!mods.length)return;pr.status="progress";pr.completed=false;pr.verified=false;pr.answers={};pr.question="";state.phase="reading";state.index=0;jump("patient")}
+else if(a==="speak")speak();
+else if(a==="pause-speech"){if("speechSynthesis" in window){if(window.speechSynthesis.paused)window.speechSynthesis.resume();else window.speechSynthesis.pause()}}
+else if(a==="stop-speech")stopSpeech();
+else if(a==="prev"){stopSpeech();state.index=Math.max(0,state.index-1);render()}
+else if(a==="next"){stopSpeech();if(state.index<mods.length-1)state.index++;else state.phase="check";render()}
+else if(a==="back-to-reading"){var q=document.getElementById("patient-question");if(q)pr.question=q.value;state.phase="reading";state.index=Math.max(0,mods.length-1);render()}
+else if(a==="submit-check"){var q=document.getElementById("patient-question");if(q)pr.question=q.value;if(mods.some(function(m){return !pr.answers[m.id]})){var v=document.getElementById("validation");if(v)v.textContent="모든 교육 주제에 응답해 주세요.";return}pr.completed=true;pr.status="review";pr.verified=false;state.phase="finished";render()}
+else if(a==="review-again"){pr.completed=false;pr.status="progress";pr.verified=false;state.phase="reading";state.index=0;render()}
+else if(a==="needs"){if(!pr.completed)return;var note=document.getElementById("nurse-note");if(note)state.notes[patient().id]=note.value;pr.status="needs";pr.verified=false;render()}
+else if(a==="verify"){if(!pr.completed)return;var checks=Array.from(document.querySelectorAll(".teachcheck"));if(checks.some(function(c){return !c.checked})){var warn=document.getElementById("review-validation");if(warn)warn.textContent="각 교육 주제에 대한 구두 확인을 모두 완료한 후 표시해 주세요.";return}var note2=document.getElementById("nurse-note");if(note2)state.notes[patient().id]=note2.value;pr.status="verified";pr.verified=true;render()}
+});
+document.addEventListener("change",function(e){
+var t=e.target;if(t.dataset.module){var id=t.dataset.module,items=state.selected[state.active];if(t.checked&&!items.includes(id))items.push(id);if(!t.checked)state.selected[state.active]=items.filter(function(x){return x!==id});prog().answers={};prog().completed=false;prog().verified=false;prog().status="wait";state.phase="intro";render()}
+if(t.dataset.answer){prog().answers[t.dataset.answer]=t.value}
+});
+render();
+})();
+</script>
+</body>
+</html>
