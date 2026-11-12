@@ -60,3 +60,24 @@
 디자인 레퍼런스: Design Atlas. (n.d.). *Design Atlas: A living dictionary of motion, effects, components and UX terms*. https://design.solhun.com/
 
 자세한 설계와 우선순위: [UX_V02_DESIGN_DECISIONS.md](UX_V02_DESIGN_DECISIONS.md).
+
+
+---
+
+## 2026-11-12 추가 업데이트: v0.3 제품 소개 및 문헌 기반 합성사례 탑재
+
+**1. 사용 도구·모델·사용일:** ChatGPT(GPT-6), GitHub 연결 도구, 공개 문헌 검색. 2026년 11월 12일. 이번 단계에서도 Codex 실행은 확인되지 않았음.
+
+**2. 입력 자료의 범위:** 3조 문제정의 워크시트, 기존 CareBridge EDU v0.2 소스 및 과제용 문서, 사용자가 요청한 제품 발표형 홈·핵심 가치 우선·실제 내용 포함 교육자료·합성데이터 적용 방향, MedlinePlus의 복강경 담낭절제술 퇴원환자 안내(검토일 2026-07-06)와 NHS 회복 안내. 실제 환자자료는 입력하지 않았음.
+
+**3. 핵심 프롬프트(요약):** “현재 기능은 유지하되 애플·삼성 신제품 발표처럼 목적과 핵심 기능을 명확히 보여주는 홈을 만들고, 어디서 무엇을 눌러야 할지 바로 이해되게 정보 위계를 구성하라. 환자교육이라는 핵심 기능을 실감하도록 실제 환자교육 근거를 바탕으로 한 합성 사례를 하나 탑재하라. 과도한 추가 기능과 정보 노출은 피하고 main에 배포하라.” (사용자 발화를 제출용으로 통합한 요약, 단일 입력문 원문이 아님)
+
+**4. 결과물 선정·수정 과정:** 홈페이지의 시연 현황을 핵심에서 내려 놓고 가치제안–직접 체험 CTA–서비스 3단계–근거자료로 단순화했다. 공개 환자교육 자료 중 수술 후 교육 범위가 명확한 복강경 담낭절제술을 선정해 한국어로 재구성했고, 인물정보는 합성 사례인 환자 D로 분리했다. 기존 A/B/C 교육 시나리오와 이해 확인 기능은 유지했다. 인쇄 가능한 별도 교육자료 문서를 추가하고 홈·간호사·환자 화면에서 연결했다.
+
+**5. 최종 판단 근거와 한계:** 실제 공개 의료교육 문헌을 참고해 설명의 실체성을 확보하되 원문 복제나 실제 환자 지시로 오인되지 않도록 문헌 기반 요약임을 명시했다. 문헌은 교육의 근거이지 이 시제품의 임상 효과 증거가 아니다. 웹 코드 문법 검사와 DOM 모의 교육 흐름 테스트를 실시했으나 실제 브라우저별 시각·음성 품질, 환자 정보 이해·간호사 업무량, 실병원 지침 적합성, 의료기관 콘텐츠 승인은 추가 검증이 필요하다. 프로그램의 교육시간 단축/이해도 향상/누락 감소 등은 **기대효과(검증 전)** 로만 표현한다.
+
+**근거·합성데이터 추가 설명:** [EDUCATION_SOURCE_AND_SYNTHETIC_CASE.md](EDUCATION_SOURCE_AND_SYNTHETIC_CASE.md)
+
+추가 참고문헌 (APA 7판)
+- U.S. National Library of Medicine. (n.d.). *Gallbladder removal – laparoscopic – discharge*. MedlinePlus. https://medlineplus.gov/ency/patientinstructions/000117.htm
+- National Health Service. (n.d.). *Recovering from gallbladder removal*. https://www.nhs.uk/tests-and-treatments/gallbladder-removal/recovery/
