@@ -50,8 +50,14 @@ var DATA=[
 {id:"C",name:"환자 C",age:45,dept:"혈액종양내과",phase:"입원",context:"입원 기본 안내",modules:[
 {id:"c1",title:"병동 이용 및 문의",text:"입원 중 불편함이나 궁금한 사항이 있으면 담당 간호사에게 알려주세요. 병동 이용 규칙은 병원 안내에 따라 확인하세요.",ask:"입원 중 질문이 생기면 어떻게 하시겠어요?"},
 {id:"c2",title:"감염 관련 주의사항 확인",text:"손 위생 등 기본적인 감염 예방 행동에 관해 의료진의 안내를 받으세요. 환자별 감염 예방 조치는 치료 상태에 따라 다를 수 있으니 반드시 확인해야 합니다.",ask:"감염 예방에 관한 개인별 주의사항은 어디서 확인하시겠어요?"},
-{id:"c3",title:"증상 및 검사 일정",text:"새로운 증상이나 몸 상태의 변화를 느끼면 즉시 담당 의료진에게 알리세요. 검사·치료 일정은 병동에서 개별 안내받으세요.",ask:"새로운 증상이 생기면 누구에게 말씀하시겠어요?"}]}];
-var state={page:"home",active:"A",phase:"intro",index:0,font:"normal",speed:.8,contrast:false,reviewTopic:"",listening:false,progress:{},selected:{},notes:{},collapsed:false,aboutTab:"ideas"};
+{id:"c3",title:"증상 및 검사 일정",text:"새로운 증상이나 몸 상태의 변화를 느끼면 즉시 담당 의료진에게 알리세요. 검사·치료 일정은 병동에서 개별 안내받으세요.",ask:"새로운 증상이 생기면 누구에게 말씀하시겠어요?"}]},
+{id:"D",name:"환자 D",age:58,dept:"외과병동",phase:"퇴원",context:"복강경 담낭절제술 퇴원교육",featured:true,source:"MedlinePlus·NHS 공개 환자교육 자료를 한국어로 재구성",sourceUrl:"https://medlineplus.gov/ency/patientinstructions/000117.htm",materialUrl:"./materials/laparoscopic-cholecystectomy-discharge.html",modules:[
+{id:"d1",title:"회복과 활동",text:"복강경 담낭절제술 후에는 회복 상태에 맞춰 가볍게 걷는 것부터 시작하고 활동을 조금씩 늘리세요. 무거운 물건 들기나 격한 운동을 다시 시작할 때는 담당 의료진에게 확인하세요. 움직일 때 통증이 심해지면 멈추고 상담하세요.",ask:"활동은 어떻게 다시 시작하고, 힘든 활동을 해도 되는 시점은 누구에게 확인하시겠어요?"},
+{id:"d2",title:"상처 관리",text:"상처를 덮은 드레싱과 봉합 방법에 따라 샤워·교체 시점이 다르므로 퇴원 전에 간호사에게 확인하세요. 의료진이 허락하기 전까지 욕조에 몸을 담그거나 수영하지 마세요. 상처가 심하게 붉어지거나 뜨겁고, 고름처럼 보이는 분비물이 생기면 병원에 연락하세요.",ask:"상처가 붉고 뜨겁거나 분비물이 생기면 어떻게 하시겠어요?"},
+{id:"d3",title:"식사와 배변",text:"회복기에는 균형 잡힌 식사를 하되 처음에는 소량씩 먹는 것이 편할 수 있습니다. 기름진 음식을 먹고 불편하다면 한동안 줄이는 방법을 의료진과 상의하세요. 묽은 변이 생길 수 있지만 오래 지속되거나 심하면 상담하세요.",ask:"식사 후 불편감이나 지속적인 설사가 있으면 어떻게 하시겠어요?"},
+{id:"d4",title:"약 복용과 외래 일정",text:"복용할 약의 이름, 용법, 주의사항은 퇴원 시 처방전과 의료진의 설명을 기준으로 확인하세요. 임의로 약을 중단하거나 양을 바꾸지 마세요. 외래 방문 여부·일정과 병원 문의처는 퇴원 전에 꼭 확인하세요. 이 시연에는 실제 처방이나 예약 정보가 없습니다.",ask:"집에서 복용할 약과 외래 날짜를 어디에서 확인하실 건가요?"},
+{id:"d5",title:"꼭 알려야 할 경고 증상",text:"열이 나거나 복통이 점점 심해질 때, 상처에 출혈·열감·고름이 보일 때, 피부나 눈이 노랗게 변하거나 먹고 마시기 어려울 때는 즉시 병원에 문의하세요. 숨이 차거나 가슴 통증처럼 응급 증상이 있으면 즉시 응급의료 도움을 요청하세요.",ask:"어떤 증상이 생기면 병원이나 응급의료기관에 즉시 도움을 요청하시겠어요?"}]}];
+var state={page:"home",active:"D",phase:"intro",index:0,font:"normal",speed:.8,contrast:false,reviewTopic:"",listening:false,progress:{},selected:{},notes:{},collapsed:false,aboutTab:"ideas"};
 DATA.forEach(function(p){state.selected[p.id]=p.modules.map(function(m){return m.id});state.progress[p.id]={status:"wait",answers:{},question:"",completed:false,verified:false};state.notes[p.id]=""});
 var app=document.getElementById("app");
 function patient(){return DATA.find(function(p){return p.id===state.active})}
