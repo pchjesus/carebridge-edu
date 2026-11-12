@@ -59,3 +59,21 @@
 - Agency for Healthcare Research and Quality. (2024). *Use the teach-back method: Tool 5*. https://www.ahrq.gov/health-literacy/improve/precautions/tool5.html
 - Agency for Healthcare Research and Quality. (2024). *Use health education material effectively: Tool 12*. https://www.ahrq.gov/health-literacy/improve/precautions/tool12.html
 - Centers for Disease Control and Prevention. (n.d.). *The CDC clear communication index*. https://www.cdc.gov/ccindex/
+
+
+## v0.2 UI/UX 업데이트 (2026-11-12)
+
+- **간호사 중심 정보 위계:** 지금 선택할 환자 → 필요한 교육 모듈 → “환자 교육 시작하기” CTA
+- **환자 중심 정보 위계:** 큰 안내문 → 듣기/글씨·속도 조절 → 다음 안내/이해 여부
+- **화면 간 3단계 안내:** 설정 → 교육 → 간호사 Teach-back 확인
+- **접이식 사이드바:** PC 확장/축소, 태블릿 아이콘 레일, 모바일 아이콘+텍스트 상단 내비게이션
+- **사용 안내:** 언제든 열 수 있는 1분 안내 팝업
+- **짧은 모션:** fade-through, stagger, 버튼 피드백, 토스트; 모션 감소 사용자 설정 존중
+- **아이디어/근거 탭 분리:** 스크롤을 줄이고 필요한 정보만 표시
+- **새로고침 시 데이터 초기화:** 가상 환자만 사용, 서버·EMR 저장 없음
+
+**[UX 설계 근거·우선순위·기능/안전성 설명](docs/UX_V02_DESIGN_DECISIONS.md)**
+
+참고한 디자인 패턴: [Design Atlas](https://design.solhun.com/). 모든 소스는 자체 작성한 시연용 구현입니다.
+
+GitHub Pages는 저장소의 **main /(root)** 배포 설정을 통해 자동 게시됩니다. [배포된 시연 사이트](https://pchjesus.github.io/carebridge-edu/). 최종 배포 결과는 [Actions](https://github.com/pchjesus/carebridge-edu/actions)에서 확인합니다.
