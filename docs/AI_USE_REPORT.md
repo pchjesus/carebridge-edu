@@ -81,3 +81,16 @@
 추가 참고문헌 (APA 7판)
 - U.S. National Library of Medicine. (n.d.). *Gallbladder removal – laparoscopic – discharge*. MedlinePlus. https://medlineplus.gov/ency/patientinstructions/000117.htm
 - National Health Service. (n.d.). *Recovering from gallbladder removal*. https://www.nhs.uk/tests-and-treatments/gallbladder-removal/recovery/
+
+
+---
+
+## 2026-11-12 추가 업데이트: v0.3.1 화면 전환·조작 반응 개선
+
+**도구 및 일자:** ChatGPT(GPT-6), GitHub 연동 도구 · 2026년 11월 12일. 별도 Codex 실행 없음.
+
+**추가 핵심 요청:** “화면 내부 CTA·토글을 누를 때 반복되는 애니메이션을 없애고, 사이드바 화면 탭을 실제로 바꿀 때만 전환 애니메이션이 나타나게 하라. 시각적 부드러움과 사용성은 유지·개선하라.”
+
+**수정·선정 내용:** 기존에는 버튼·글자 크기·음성 속도·고대비 등의 조작과 상태 재표시마다 전체 화면 애니메이션이 재실행되는 구조였음. 이를 화면 이동 출처에 따라 구분하여 **사이드바 탭 변경 시에만 약 0.2초의 간결한 전환**을 제공하고, 동일 탭 재선택·CTA·환자 선택·교육카드·설정 변경 시 모션을 제거함. 글자 크기·음성 속도·고대비·교육항목 체크는 가능한 화면을 다시 만들지 않고 선택된 부분만 즉시 갱신하도록 개선함. 의료진 목록의 가상 환자 수 표기도 4명으로 정정함.
+
+**검증과 한계:** JavaScript 구문 검사 및 DOM 기반 모의 검증에서 탭 변경의 모션 적용, 같은 탭·내부 CTA·글자·속도·고대비 조작에서 모션 미적용, 기존 환자 D 시연 연결 유지 등을 확인함. 실제 모바일/PC 브라우저·보조공학 및 음성 합성의 사용자 경험은 별도 확인이 필요함. 프로그램 자체의 임상 효과는 여전히 검증 전이며, 기능 개선을 환자 이해도나 간호업무 경감의 실증으로 해석하지 않음.
