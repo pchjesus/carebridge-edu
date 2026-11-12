@@ -14,22 +14,24 @@
 @media(max-width:760px){.topbar{height:58px;padding:0 18px}.content{padding:22px 16px 60px}.sidebar{display:block;padding:12px}.logo{padding:0 5px 10px}.nav button{font-size:12px;padding:9px 11px}.hero{padding:22px}.cards,.workflow,.two-col,.nurse-layout,.info,.evidence,.ideas{grid-template-columns:1fr}.card{padding:18px}.reader{padding:19px}.reader.f-xlarge{font-size:21px}.topbar .tag{font-size:10px}.hero-actions .btn{flex:1}.nurse-layout{gap:11px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
+<link rel="stylesheet" href="./assets/ui-v02.css">
 </head>
 <body>
-<div class="layout">
+<div class="layout" id="shell">
 <aside class="sidebar">
- <div class="logo"><div class="mark" aria-hidden="true">C</div><div><strong>CareBridge EDU</strong><small>입·퇴원 교육지원 · 시연용</small></div></div>
+ <div class="logo"><div class="mark" aria-hidden="true">C</div><div class="logo-copy"><strong>CareBridge EDU</strong><small>입·퇴원 교육지원 · 시연용</small></div></div>
+ <button class="sidebar-toggle" data-action="toggle-sidebar" aria-label="사이드바 접기" title="사이드바 접기" aria-expanded="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 4 12l5 7M4 12h16"/></svg><span class="toggle-label">메뉴 접기</span></button>
  <nav class="nav" aria-label="주요 메뉴">
-  <button data-nav="home" id="nav-home">개요</button>
-  <button data-nav="nurse" id="nav-nurse">의료진 대시보드</button>
-  <button data-nav="patient" id="nav-patient">환자 교육 화면</button>
-  <button data-nav="review" id="nav-review">최종 이해 확인</button>
-  <button data-nav="about" id="nav-about">아이디어·근거</button>
+  <button data-nav="home" id="nav-home" aria-label="홈" title="홈"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span class="nav-label">홈</span></button>
+  <button data-nav="nurse" id="nav-nurse" aria-label="의료진 교육 설정" title="의료진 교육 설정"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18M9 15h6m-3-3v6"/></svg><span class="nav-label">의료진 교육 설정</span></button>
+  <button data-nav="patient" id="nav-patient" aria-label="환자 교육" title="환자 교육"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M10 6.5h4M12 17.5v.1"/></svg><span class="nav-label">환자 교육</span></button>
+  <button data-nav="review" id="nav-review" aria-label="이해도 확인" title="이해도 확인"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v4h6V3m-7 12 3 3 5-6"/></svg><span class="nav-label">이해도 확인</span></button>
+  <button data-nav="about" id="nav-about" aria-label="아이디어·근거" title="아이디어·근거"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4m0-4v.1"/></svg><span class="nav-label">아이디어·근거</span></button>
  </nav>
  <div class="sidefoot"><strong>수업용 프로토타입</strong><div>가상 환자·가상 교육자료만 사용합니다. 실제 의료기관의 처방, 동의, 공식 간호기록을 대체하지 않습니다.</div></div>
 </aside>
 <div class="main">
-<header class="topbar"><strong>2026-2 첨단기술과 간호 · 3조</strong><span class="tag warn">MVP 시연 · 임상 검증 전</span></header>
+<header class="topbar"><div class="topmeta"><strong>첨단기술과 간호 · 3조</strong><span class="tag warn">임상 검증 전</span></div><div class="head-actions"><button class="guide-button" data-action="show-help" aria-label="사용 안내 열기">ⓘ &nbsp;사용 안내</button></div></header>
 <main class="content" id="app" aria-live="polite"></main>
 </div>
 </div>
@@ -49,7 +51,7 @@ var DATA=[
 {id:"c1",title:"병동 이용 및 문의",text:"입원 중 불편함이나 궁금한 사항이 있으면 담당 간호사에게 알려주세요. 병동 이용 규칙은 병원 안내에 따라 확인하세요.",ask:"입원 중 질문이 생기면 어떻게 하시겠어요?"},
 {id:"c2",title:"감염 관련 주의사항 확인",text:"손 위생 등 기본적인 감염 예방 행동에 관해 의료진의 안내를 받으세요. 환자별 감염 예방 조치는 치료 상태에 따라 다를 수 있으니 반드시 확인해야 합니다.",ask:"감염 예방에 관한 개인별 주의사항은 어디서 확인하시겠어요?"},
 {id:"c3",title:"증상 및 검사 일정",text:"새로운 증상이나 몸 상태의 변화를 느끼면 즉시 담당 의료진에게 알리세요. 검사·치료 일정은 병동에서 개별 안내받으세요.",ask:"새로운 증상이 생기면 누구에게 말씀하시겠어요?"}]}];
-var state={page:"home",active:"A",phase:"intro",index:0,font:"normal",speed:.8,contrast:false,reviewTopic:"",listening:false,progress:{},selected:{},notes:{}};
+var state={page:"home",active:"A",phase:"intro",index:0,font:"normal",speed:.8,contrast:false,reviewTopic:"",listening:false,progress:{},selected:{},notes:{},collapsed:false,aboutTab:"ideas"};
 DATA.forEach(function(p){state.selected[p.id]=p.modules.map(function(m){return m.id});state.progress[p.id]={status:"wait",answers:{},question:"",completed:false,verified:false};state.notes[p.id]=""});
 var app=document.getElementById("app");
 function patient(){return DATA.find(function(p){return p.id===state.active})}
@@ -64,74 +66,125 @@ function footer(){return '<div class="footer">CareBridge EDU · 학습·조별 �
 function home(){
 var statuses=DATA.map(function(p){return state.progress[p.id].status});
 var waiting=statuses.filter(function(s){return s==="wait"}).length, reviewing=statuses.filter(function(s){return s==="review"||s==="needs"}).length, verified=statuses.filter(function(s){return s==="verified"}).length;
-return '<section class="hero"><div class="eyebrow">CAREBRIDGE EDU · CONCEPT MVP</div><h1>반복 설명은 더 간편하게,<br>이해도 확인은 더 정확하게.</h1><p class="lead">입·퇴원이 잦은 병동에서 간호사가 교육 주제를 선택하면, 환자가 큰 글씨·음성 안내로 학습하고 간호사가 마지막에 직접 이해도를 확인하는 교육지원 프로토타입입니다.</p><div class="hero-actions"><button class="btn" data-nav="nurse">의료진 화면 시작하기 →</button><button class="btn ghost" data-nav="patient">환자 교육 체험하기</button></div></section>'
-+'<div class="note amber"><strong>임상 검증 전 MVP</strong> · 안내문은 가상 예시이며 약물·금식·상처관리 등 실제 지시는 병원 및 담당 의료진의 승인된 내용을 사용해야 합니다. 퇴원 후 추적관리 기능은 포함하지 않습니다.</div>'
-+'<section class="section"><h2>시연 상태 <span class="small">· 가상 환자 3명, 실제 임상 데이터 아님</span></h2><div class="cards"><div class="card"><div class="label">교육 대기</div><div class="num">'+waiting+'</div><span class="small">설정 또는 시작 전</span></div><div class="card"><div class="label">간호사 확인 필요</div><div class="num">'+reviewing+'</div><span class="small">이해 확인·보충 설명</span></div><div class="card"><div class="label">구두 확인 완료</div><div class="num">'+verified+'</div><span class="small">간호사 확인 후에만 표시</span></div></div></section>'
-+'<section class="section"><h2>서비스 흐름</h2><div class="workflow">'+[['01','교육 설정','간호사가 입·퇴원 항목을 선택'],['02','맞춤 설명','환자가 글씨·음성 속도를 조절'],['03','자기 점검','환자가 이해 및 질문 항목 표시'],['04','최종 확인','간호사가 Teach-back으로 확인']].map(function(a){return '<div class="stepbox"><div class="stepnum">'+a[0]+'</div><h3>'+a[1]+'</h3><div class="small">'+a[2]+'</div></div>'}).join('')+'</div></section>'
-+'<section class="section evidence"><div class="card"><span class="tag">근거가 있는 교육 원칙</span><h3 style="margin-top:13px">쉬운 설명과 Teach-back</h3><p class="small">AHRQ와 CDC는 명확한 환자교육 자료 구성과 환자가 자신의 말로 설명하도록 하는 이해 확인 전략을 안내합니다. 이는 설계 원칙의 근거입니다.</p></div><div class="card"><span class="tag warn">프로그램 기대효과 · 미검증</span><h3 style="margin-top:13px">간호 업무 부담 완화 등</h3><p class="small">시간 절감, 정보 누락 감소, 환자 이해도 향상은 <strong>가설적 기대효과</strong>이며 이 MVP로 검증된 성과는 없습니다.</p></div></section>'+footer()
+var p=patient(),pr=prog();
+return '<div class="eyebrow">CAREBRIDGE EDU · 입·퇴원 교육지원 MVP</div>'
++'<section class="hero"><span class="tag" style="background:#e5eefa">업무 흐름 중심 · 가상 환자 시연</span><h1>반복 안내는 간편하게.<br>중요한 확인은 간호사가.</h1><p class="lead">환자별 교육 주제를 선택하고, 환자는 큰 글씨와 음성으로 안내받으며, 간호사가 마지막에 이해한 내용을 직접 확인합니다.</p>'
++'<div class="hero-actions"><button class="btn" data-nav="nurse">교육 설정 시작하기 →</button><button class="btn ghost" data-action="show-help">1분 사용 안내</button></div></section>'
++'<div class="slim-alert"><span><strong>수업용 시연</strong> · 실제 환자나 처방에 사용하지 마세요. 교육 효과와 의료 안전성은 미검증 상태입니다.</span><span class="tag warn">실증 결과 없음</span></div>'
++'<section class="section"><div class="row between"><h2>지금 해야 할 일</h2><span class="quick-metadata">3단계로 살펴보는 MVP</span></div><div class="guide-steps">'
++'<button class="guide-step" data-nav="nurse"><span class="symbol" aria-hidden="true">①</span><span><h3>교육할 환자 선택</h3><div class="small">입원·퇴원 상황에 맞는 교육 내용을 고르세요.</div><div class="action">의료진 화면으로 →</div></span></button>'
++'<button class="guide-step" data-nav="patient"><span class="symbol" aria-hidden="true">②</span><span><h3>환자 교육 체험</h3><div class="small">글씨 크기·음성 속도를 조절해 안내를 확인하세요.</div><div class="action">환자 화면으로 →</div></span></button>'
++'<button class="guide-step" data-nav="review"><span class="symbol" aria-hidden="true">③</span><span><h3>이해도 최종 확인</h3><div class="small">환자의 질문과 재설명 요청을 확인하세요.</div><div class="action">간호사 확인으로 →</div></span></button>'
++'</div></section>'
++'<section class="section"><div class="row between"><h2>교육 현황</h2><span class="small">가상 환자 3명 · 시연 진행 상태</span></div><div class="cards"><div class="card"><div class="label">교육 대기</div><div class="num">'+waiting+'</div><span class="small">교육 시작 전</span></div><div class="card"><div class="label">확인 필요</div><div class="num">'+reviewing+'</div><span class="small">구두 확인·보충교육</span></div><div class="card"><div class="label">구두 확인 완료</div><div class="num">'+verified+'</div><span class="small">간호사 판단 이후</span></div></div></section>'
++'<section class="section"><div class="row between"><h2>현재 선택된 환자</h2><span class="tag">'+p.phase+' 교육</span></div><div class="card row between"><div><strong>'+p.name+' · '+p.dept+'</strong><div class="small">'+p.context+' · '+patient().modules.length+'개 교육 주제</div></div><div class="row">'+badge(pr.status)+'<button class="btn small ghost" data-nav="nurse">교육 내용 설정 →</button></div></div></section>'
++footer();
 }
 function nurse(){
-var p=patient(), pr=prog(), count=selectedModules().length;
-return '<div class="eyebrow">NURSE WORKSPACE</div><h1>의료진 대시보드</h1><p class="lead">가상 환자를 선택하고 필요한 입·퇴원 교육 모듈을 지정하세요. 실제 병원 EMR과는 연결되지 않습니다.</p>'
-+'<div class="nurse-layout section"><section class="card"><h3>가상 환자 목록</h3><div class="patient-list">'+DATA.map(function(x){return '<button class="patient-row '+(x.id===state.active?"selected":"")+'" data-patient="'+x.id+'" aria-pressed="'+(x.id===state.active)+'"><span><strong>'+x.name+'</strong><br><span class="tiny muted">'+x.dept+' · '+x.phase+'</span></span>'+badge(state.progress[x.id].status)+'</button>'}).join('')+'</div><div class="group small">환자 A/B/C는 과제 시연을 위한 가상 사례입니다. 실제 식별정보는 입력하지 마세요.</div></section>'
-+'<section class="card"><div class="row between"><div><div class="eyebrow">교육 설정</div><h2 style="margin:6px 0 12px">'+p.name+' · '+p.context+'</h2></div>'+badge(pr.status)+'</div><div class="info"><div><span>진료 부서</span><strong>'+p.dept+'</strong></div><div><span>교육 시점</span><strong>'+p.phase+' 시</strong></div></div><div class="group"><h3>교육 주제 선택 <span class="small">('+count+'/'+p.modules.length+')</span></h3><p class="small">선택한 내용만 환자 화면에 나타납니다. 병원 승인 전에는 실제 교육에 사용하면 안 됩니다.</p>'
-+p.modules.map(function(m){return '<label class="module"><input type="checkbox" data-module="'+m.id+'" '+(state.selected[p.id].indexOf(m.id)>=0?"checked":"")+'><span><strong>'+m.title+'</strong><span class="small">'+m.text.substring(0,60)+'…</span></span></label>'}).join('')+'</div>'
-+'<div class="note">환자 연령과 관계없이 글자 크기·음성 속도를 직접 선택하도록 설계했습니다. 고령자를 이유로 일괄 설정하지 않습니다.</div><div class="row" style="margin-top:17px"><button class="btn" data-action="begin" '+(count?"":"disabled")+'>선택한 교육 시작하기</button><button class="btn ghost" data-nav="review">교육 결과·최종 확인</button></div></section></div>'+footer()
+var p=patient(),pr=prog(),mods=selectedModules(),count=mods.length;
+return '<div class="eyebrow">STEP 1 · NURSE WORKSPACE</div><div class="row between"><div><h1>교육할 환자와 항목 선택</h1><p class="lead">가상 환자를 선택하고 필요한 교육만 체크하세요. 선택 후 바로 환자 화면을 체험할 수 있어요.</p></div><button class="btn small ghost" data-action="show-help">사용 안내</button></div>'
++'<div class="flow-steps"><span class="flow-step current">1 · 간호사 교육 설정</span><span class="flow-arrow">›</span><span class="flow-step">2 · 환자 맞춤 교육</span><span class="flow-arrow">›</span><span class="flow-step">3 · 이해도 확인</span></div>'
++'<div class="nurse-layout"><section class="card"><h3>환자 선택 <span class="small">· 3명 시연 데이터</span></h3><div class="patient-list">'+DATA.map(function(x){return '<button class="patient-row '+(x.id===state.active?"selected":"")+'" data-patient="'+x.id+'" aria-pressed="'+(x.id===state.active)+'"><span><strong>'+x.name+'</strong><br><span class="tiny muted">'+x.dept+' · '+x.phase+'</span></span>'+badge(state.progress[x.id].status)+'</button>'}).join('')+'</div><div class="group"><div class="note">가상 환자만 사용합니다. 실제 환자 이름이나 정보를 입력하지 마세요.</div></div><button class="btn small subtle" data-action="reset-demo">시연 상태 초기화</button></section>'
++'<section class="card"><div class="row between"><div><div class="eyebrow">'+p.phase+' 시 환자 안내</div><h2 style="margin:4px 0 8px">'+p.name+' · '+p.context+'</h2></div>'+badge(pr.status)+'</div><div class="info"><div><span>사용 부서</span><strong>'+p.dept+'</strong></div><div><span>교육 항목</span><strong>'+count+'개 선택 / 전체 '+p.modules.length+'개</strong></div></div>'
++'<div class="group"><div class="row between"><h3>교육 모듈 <span class="small">· 항목을 눌러 선택하거나 해제</span></h3><button class="btn small subtle" data-action="select-all">모두 선택</button></div>'
++p.modules.map(function(m){return '<label class="module"><input type="checkbox" data-module="'+m.id+'" '+(state.selected[p.id].indexOf(m.id)>=0?"checked":"")+'><span><strong>'+m.title+'</strong><span class="small">'+m.text.substring(0,78)+'…</span></span></label>'}).join('')+'</div>'
++'<div class="slim-alert"><span>선택한 주제만 환자 화면에 표시해요. 병원의 승인된 교육자료를 대체하지 않습니다.</span></div>'
++'<div class="row between" style="margin-top:15px"><span class="small">'+count+'개 주제로 환자 교육 시연</span><div class="row"><button class="btn small ghost" data-nav="review">교육 결과 확인</button><button class="btn" data-action="begin" '+(count?"":"disabled")+'>환자 교육 시작하기 →</button></div></div></section></div>'+footer();
 }
 function readerControls(){
-return '<div class="reader-controls"><span class="control-label">글씨 크기</span><div class="switches" role="group" aria-label="글씨 크기"><button data-font="normal" class="'+(state.font==="normal"?"selected":"")+'">기본</button><button data-font="large" class="'+(state.font==="large"?"selected":"")+'">크게</button><button data-font="xlarge" class="'+(state.font==="xlarge"?"selected":"")+'">아주 크게</button></div><span class="control-label">음성 속도</span><div class="switches" role="group" aria-label="음성 속도"><button data-speed=".8" class="'+(state.speed===.8?"selected":"")+'">천천히</button><button data-speed="1" class="'+(state.speed===1?"selected":"")+'">보통</button><button data-speed="1.2" class="'+(state.speed===1.2?"selected":"")+'">빠르게</button></div><button class="btn small subtle" data-action="contrast">고대비 '+(state.contrast?"끄기":"켜기")+'</button></div>'
+return '<div class="reader-controls"><span class="control-label">글씨 크기</span><div class="switches" role="group" aria-label="글씨 크기"><button data-font="normal" aria-pressed="'+(state.font==="normal")+'" class="'+(state.font==="normal"?"selected":"")+'">기본</button><button data-font="large" aria-pressed="'+(state.font==="large")+'" class="'+(state.font==="large"?"selected":"")+'">크게</button><button data-font="xlarge" aria-pressed="'+(state.font==="xlarge")+'" class="'+(state.font==="xlarge"?"selected":"")+'">아주 크게</button></div><span class="control-label">읽기 속도</span><div class="switches" role="group" aria-label="음성 속도"><button data-speed=".8" aria-pressed="'+(state.speed===.8)+'" class="'+(state.speed===.8?"selected":"")+'">느리게</button><button data-speed="1" aria-pressed="'+(state.speed===1)+'" class="'+(state.speed===1?"selected":"")+'">보통</button><button data-speed="1.2" aria-pressed="'+(state.speed===1.2)+'" class="'+(state.speed===1.2?"selected":"")+'">빠르게</button></div><button class="btn small subtle" data-action="contrast" aria-pressed="'+state.contrast+'">◐ 고대비 '+(state.contrast?"끄기":"켜기")+'</button></div>';
 }
 function patientPage(){
-var p=patient(),pr=prog(),mods=selectedModules();
-var h='<div class="patient-stage"><div class="eyebrow">PATIENT EDUCATION DEMO</div><h1>환자 교육 화면</h1><p class="lead">'+p.name+' · '+p.dept+' · '+p.phase+' 교육 <span class="tag">가상 사례</span></p><div class="note amber">이 교육은 시연용 예시입니다. 실제 금식, 처방약, 검사·수술, 퇴원 지침은 의료진에게 별도로 확인하세요.</div>'+readerControls();
-if(!mods.length)return h+'<section class="card"><h2>선택된 교육이 없어요</h2><button class="btn" data-nav="nurse">의료진 화면에서 선택하기</button></section></div>'+footer();
+var p=patient(),pr=prog(),mods=selectedModules(),total=mods.length;
+var st=pr.completed?3:state.phase==="check"?2:1;
+var h='<div class="patient-stage"><div class="eyebrow">STEP 2 · PATIENT EDUCATION</div><div class="row between"><div><h1>환자 맞춤 안내</h1><p class="lead"><strong>'+p.name+'</strong> · '+p.dept+' · '+p.phase+' 교육</p></div><span class="tag warn">가상 환자 시연</span></div>'
++'<div class="flow-steps"><span class="flow-step done">1 · 교육 설정</span><span class="flow-arrow">›</span><span class="flow-step '+(st===1?"current":st>1?"done":"")+'">2 · 내용 읽고 듣기</span><span class="flow-arrow">›</span><span class="flow-step '+(st>=2?"current":"")+'">3 · 이해 여부 표시</span></div>'
++readerControls();
+if(!total)return h+'<section class="card"><h2>선택된 교육이 없어요</h2><p>의료진 화면에서 교육할 주제를 먼저 선택하세요.</p><button class="btn" data-nav="nurse">교육 설정하기 →</button></section></div>'+footer();
 if(state.phase==="intro"&&!pr.completed){
-h+='<section class="card"><div class="eyebrow">학습 준비</div><h2>'+p.context+'</h2><p>안내 주제는 '+mods.length+'개입니다. 한 화면에 한 가지씩 읽거나 들을 수 있어요. 이해가 어려운 내용은 나중에 간호사에게 질문할 수 있어요.</p><div class="row"><button class="btn" data-action="start-reading">교육 시작</button><button class="btn ghost" data-nav="nurse">설정 화면</button></div></section>';
+h+='<section class="card"><div class="eyebrow">교육 준비 · '+total+'개 주제</div><h2>'+p.context+'</h2><p>안내를 한 주제씩 읽거나 들을 수 있어요. 이해하기 어렵다면 다시 듣거나 간호사에게 질문을 남기세요.</p><div class="row"><button class="btn" data-action="start-reading">첫 번째 안내 읽기 →</button><button class="btn ghost" data-nav="nurse">교육 설정으로</button></div></section>';
 }else if(state.phase==="reading"&&!pr.completed){
-var m=mods[Math.min(state.index,mods.length-1)];
-h+='<section class="card"><div class="row between"><strong>'+ (state.index+1)+' / '+mods.length+' 번째 안내</strong><span class="small">'+p.phase+' 시 교육</span></div><div class="progress-rail" role="progressbar" aria-valuenow="'+(state.index+1)+'" aria-valuemin="0" aria-valuemax="'+mods.length+'"><span style="width:'+((state.index+1)/mods.length*100)+'%"></span></div><div class="reader f-'+state.font+(state.contrast?" high":"")+'"><div class="reader-kicker">꼭 확인할 내용</div><div class="reader-title">'+m.title+'</div><div class="reader-text">'+esc(m.text)+'</div></div><div class="row" style="margin-top:17px"><button class="btn ghost" data-action="speak">▶ 읽어주기</button><button class="btn subtle" data-action="pause-speech">일시정지/계속</button><button class="btn subtle" data-action="stop-speech">■ 정지</button></div><div class="row between" style="margin-top:19px"><button class="btn ghost" data-action="prev" '+(state.index===0?"disabled":"")+'>← 이전</button><button class="btn" data-action="next">'+(state.index===mods.length-1?"이해 확인으로 →":"다음 안내 →")+'</button></div><div class="small" style="margin-top:12px">음성 기능은 기기의 브라우저·운영체제 한국어 음성 지원 여부에 따라 다르게 동작할 수 있습니다.</div></section>';
+var m=mods[Math.min(state.index,total-1)];
+h+='<section class="card"><div class="row between"><strong>안내 '+(state.index+1)+' / '+total+'</strong><span class="small">한 번에 하나씩 천천히 확인하세요</span></div><div class="progress-rail" role="progressbar" aria-valuenow="'+(state.index+1)+'" aria-valuemin="0" aria-valuemax="'+total+'" aria-label="교육 진행"><span style="width:'+((state.index+1)/total*100)+'%"></span></div>'
++'<div class="reader f-'+state.font+(state.contrast?" high":"")+'"><div class="reader-kicker">'+p.phase+' 시 확인할 내용</div><div class="reader-title">'+m.title+'</div><div class="reader-text">'+esc(m.text)+'</div></div>'
++'<div class="row between" style="margin-top:13px"><div class="row"><button class="btn ghost" data-action="speak" aria-label="현재 안내 읽어주기">▶ 음성으로 듣기</button><button class="btn subtle" data-action="pause-speech">⏸ 일시정지 / 계속</button><button class="btn subtle" data-action="stop-speech">■ 정지</button></div></div>'
++'<div class="row between" style="margin-top:15px"><button class="btn ghost" data-action="prev" '+(state.index===0?"disabled":"")+'>← 이전 안내</button><button class="btn" data-action="next">'+(state.index===total-1?"이해 여부 확인하기 →":"다음 안내 읽기 →")+'</button></div><div class="small" style="margin-top:7px">음성 재생은 브라우저와 기기의 한국어 음성 지원 여부에 따라 다릅니다.</div></section>';
 }else if(state.phase==="check"&&!pr.completed){
-h+='<section class="card"><div class="eyebrow">이해도 자기 점검</div><h2>이해되지 않은 내용을 표시해 주세요</h2><p>이 단계는 환자의 자기 보고를 수집합니다. 정답 판정이나 실제 이해 확인을 자동으로 수행하지 않습니다.</p>'
-+mods.map(function(m,i){var v=pr.answers[m.id]||"";return '<div class="group"><h3>'+(i+1)+'. '+m.title+'</h3><p class="small">'+m.ask+'</p><label class="answer-option"><input type="radio" name="answer-'+m.id+'" value="yes" data-answer="'+m.id+'" '+(v==="yes"?"checked":"")+'>설명을 이해했어요</label><label class="answer-option"><input type="radio" name="answer-'+m.id+'" value="again" data-answer="'+m.id+'" '+(v==="again"?"checked":"")+'>다시 설명이 필요해요</label></div>'}).join('')
-+'<label class="field" for="patient-question">간호사에게 질문하고 싶은 내용 (선택)</label><textarea class="textbox" id="patient-question" placeholder="예: 복용약을 다시 확인하고 싶어요.">'+esc(pr.question)+'</textarea><div class="row between" style="margin-top:17px"><button class="btn ghost" data-action="back-to-reading">이전 안내로</button><button class="btn" data-action="submit-check">확인 내용 간호사에게 전달</button></div><p class="small" id="validation" role="status"></p></section>';
+h+='<section class="card"><div class="eyebrow">마지막 단계 · 이해 여부 표시</div><h2>어떤 내용을 다시 듣고 싶으세요?</h2><p class="small">스스로 이해했다고 답해도, 실제 이해 여부는 간호사가 대화로 다시 확인해요.</p>'
++mods.map(function(m,i){var v=pr.answers[m.id]||"";return '<div class="group"><div class="row between"><h3>'+(i+1)+'. '+m.title+'</h3><span class="small">'+(v?"응답 선택됨":"선택 필요")+'</span></div><div class="row" role="radiogroup" aria-label="'+m.title+' 이해 여부"><label class="answer-option" style="flex:1"><input type="radio" name="answer-'+m.id+'" value="yes" data-answer="'+m.id+'" '+(v==="yes"?"checked":"")+'>이해했어요</label><label class="answer-option" style="flex:1"><input type="radio" name="answer-'+m.id+'" value="again" data-answer="'+m.id+'" '+(v==="again"?"checked":"")+'>다시 설명해 주세요</label></div></div>'}).join('')
++'<label class="field" for="patient-question">간호사에게 남길 질문 (선택)</label><textarea class="textbox" id="patient-question" placeholder="궁금한 내용을 적어 주세요. 실제 개인정보는 입력하지 마세요.">'+esc(pr.question)+'</textarea><div class="row between" style="margin-top:13px"><button class="btn ghost" data-action="back-to-reading">← 안내 다시 보기</button><button class="btn" data-action="submit-check">간호사에게 확인 요청하기 →</button></div><p class="small" id="validation" role="status" aria-live="polite"></p></section>';
 }else{
-h+='<section class="card"><span class="tag">교육 화면 종료</span><h2 style="margin-top:15px">안내 내용을 확인했어요.</h2><p>환자 화면에서의 선택은 교육의 완료와 실제 이해를 보장하지 않습니다. 간호사가 직접 이해한 내용을 확인하고 필요하면 다시 설명합니다.</p><div class="row">'+badge(pr.status)+'<button class="btn ghost" data-action="review-again">교육 다시 보기</button><button class="btn" data-nav="review">간호사 확인 화면</button></div></section>';
+h+='<section class="card" style="text-align:center;padding:27px"><div class="stepnum" style="margin:auto auto 12px;background:#e5f5ed;color:#0a7c5c">✓</div><h2>교육 내용을 확인했어요</h2><p>이제 간호사가 주요 내용을 직접 질문하고 이해 여부를 확인해요. 화면에서 교육을 마쳤다는 사실만으로 이해가 확인되지는 않아요.</p><div class="row" style="justify-content:center;margin-top:13px">'+badge(pr.status)+'<button class="btn ghost" data-action="review-again">교육 다시 보기</button><button class="btn" data-nav="review">간호사 확인 화면으로 →</button></div></section>';
 }
-return h+'</div>'+footer()
+return h+'<div class="small" style="margin-top:12px">의료 안전 안내: 이 화면은 수업용이며 개인별 금식·약물·수술 후 주의사항 등은 병원에서 직접 확인해야 합니다.</div></div>'+footer();
 }
 function review(){
 var p=patient(),pr=prog(),mods=selectedModules();
-var asked=mods.filter(function(m){return pr.answers[m.id]==="again"}), missing=mods.filter(function(m){return !pr.answers[m.id]});
-var completed=pr.completed;
-return '<div class="eyebrow">NURSE TEACH-BACK REVIEW</div><h1>최종 이해 확인</h1><p class="lead">환자가 교육을 보았다는 사실과 실제 이해 여부를 구분해요. 간호사가 직접 질문하고 필요한 내용을 보충한 뒤 최종 확인합니다.</p><div class="nurse-layout section"><section class="card"><h3>확인할 환자</h3><div class="patient-list">'+DATA.map(function(x){return '<button class="patient-row '+(state.active===x.id?"selected":"")+'" data-patient="'+x.id+'"><span><strong>'+x.name+'</strong><br><span class="tiny muted">'+x.dept+' · '+x.phase+'</span></span>'+badge(state.progress[x.id].status)+'</button>'}).join('')+'</div></section><section class="card"><div class="row between"><h2>'+p.name+' 교육 결과</h2>'+badge(pr.status)+'</div><div class="info"><div><span>환자 화면 응답</span><strong>'+Object.keys(pr.answers).length+' / '+mods.length+' 항목</strong></div><div><span>재설명 요청</span><strong>'+asked.length+' 항목</strong></div></div><div class="group"><h3>환자가 표시한 결과</h3>'+mods.map(function(m){var v=pr.answers[m.id];return '<div class="row between" style="padding:11px 0;border-bottom:1px solid var(--line)"><strong style="font-size:14px">'+m.title+'</strong><span class="status '+(v==="again"?"review":"")+'">'+(v==="again"?"재설명 요청":v==="yes"?"이해했다고 응답":"미응답")+'</span></div>'}).join('')+'</div>'
-+(pr.question?'<div class="note"><strong>환자 질문:</strong> '+esc(pr.question)+'</div>':'')
-+'<div class="group"><h3>Teach-back 구두 확인</h3><p class="small">환자가 자신의 말로 주요 내용을 설명하도록 요청한 뒤 간호사가 결과를 판단합니다.</p>'
-+mods.map(function(m){return '<label class="checkrow"><input type="checkbox" class="teachcheck" value="'+m.id+'" '+(pr.verified?"checked":"")+'><span><strong>'+m.title+'</strong><br><span class="small">확인 질문: '+m.ask+'</span></span></label>'}).join('')
-+'<label class="field" for="nurse-note">보충교육·확인 메모 (시연 세션에만 유지)</label><textarea class="textbox" id="nurse-note" placeholder="실제 환자정보를 쓰지 마세요.">'+esc(state.notes[p.id])+'</textarea>'
-+'<div class="row" style="margin-top:15px"><button class="btn" data-action="verify" '+(!completed||!mods.length||missing.length?"disabled":"")+'>구두 확인 완료로 표시</button><button class="btn ghost" data-action="needs" '+(!completed?"disabled":"")+'>추가 설명 필요</button><button class="btn subtle" data-nav="patient">환자 화면 보기</button></div><p class="small" id="review-validation" role="status"></p></div>'
-+'<div class="note amber"><strong>안전 경계:</strong> 체크 표시 자체가 임상적 이해를 증명하지는 않습니다. 실제 적용 시에는 간호사의 대면 확인, 기관 절차, 공식 기록 시스템이 필요합니다.</div></section></div>'+footer();
+var asked=mods.filter(function(m){return pr.answers[m.id]==="again"}),missing=mods.filter(function(m){return !pr.answers[m.id]});
+return '<div class="eyebrow">STEP 3 · NURSE REVIEW</div><h1>간호사 최종 이해 확인</h1><p class="lead">환자의 요청을 먼저 확인하고, 환자의 말로 주요 내용을 설명하도록 요청한 뒤 보충교육 여부를 판단하세요.</p>'
++'<div class="flow-steps"><span class="flow-step done">1 · 교육 설정</span><span class="flow-arrow">›</span><span class="flow-step done">2 · 환자 교육</span><span class="flow-arrow">›</span><span class="flow-step current">3 · 구두 이해 확인</span></div>'
++'<div class="nurse-layout"><section class="card"><h3>확인할 환자 선택</h3><div class="patient-list">'+DATA.map(function(x){return '<button class="patient-row '+(state.active===x.id?"selected":"")+'" data-patient="'+x.id+'"><span><strong>'+x.name+'</strong><br><span class="tiny muted">'+x.dept+' · '+x.phase+'</span></span>'+badge(state.progress[x.id].status)+'</button>'}).join('')+'</div><div class="group note">환자가 응답을 완료해야 최종 확인 버튼을 사용할 수 있어요.</div></section>'
++'<section class="card"><div class="row between"><div><h2>'+p.name+' · 교육 결과</h2><div class="small">'+mods.length+'개 교육 항목 중 '+Object.keys(pr.answers).length+'개 응답 · 재설명 요청 '+asked.length+'개</div></div>'+badge(pr.status)+'</div>'
++(asked.length?'<div class="note amber" style="margin-top:10px"><strong>다시 설명 요청:</strong> '+asked.map(function(m){return m.title}).join(', ')+'</div>':'')
++(pr.question?'<div class="note" style="margin-top:8px"><strong>환자 질문:</strong> '+esc(pr.question)+'</div>':'')
++'<div class="group"><div class="row between"><h3>Teach-back 확인 체크리스트</h3><span class="tag">간호사가 구두 확인</span></div>'
++mods.map(function(m){var v=pr.answers[m.id];return '<label class="checkrow"><input type="checkbox" class="teachcheck" value="'+m.id+'" '+(pr.verified?"checked":"")+'><span><strong>'+m.title+'</strong> <span class="status '+(v==="again"?"review":"")+'">'+(v==="again"?"재설명 요청":v==="yes"?"이해했다고 응답":"미응답")+'</span><br><span class="small">'+m.ask+'</span></span></label>'}).join('')
++'<label class="field" for="nurse-note">확인·보충교육 메모 (현재 시연 화면에만 보관)</label><textarea class="textbox" id="nurse-note" rows="2" placeholder="실제 환자정보 입력 금지">'+esc(state.notes[p.id])+'</textarea></div>'
++'<div class="row between"><div class="small">교육 상태를 선택하세요.</div><div class="row"><button class="btn ghost" data-action="needs" '+(!pr.completed?"disabled":"")+'>추가 설명 필요</button><button class="btn" data-action="verify" '+(!pr.completed||!mods.length||missing.length?"disabled":"")+'>구두 확인 완료로 표시 →</button></div></div><p class="small" id="review-validation" role="status" aria-live="polite"></p>'
++'<div class="note amber" style="margin-top:9px">체크는 과제 시연 기능이며 임상 기록이 아닙니다. 의료진 대면 확인 및 병원 승인 절차를 대체하지 않습니다.</div></section></div>'+footer();
 }
 function about(){
-var ideas=[["교육 모듈 조합","공통·진료과·상황별 교육을 선택하여 누락 위험을 줄이도록 설계"],["맞춤형 읽기·듣기","큰 글씨, 고대비, 속도 조절, 반복 듣기로 접근성 지원"],["환자 자기 점검","모르는 항목과 질문을 표시하여 간호사에게 전달"],["간호사 Teach-back","환자의 말로 설명하도록 요청하고 간호사가 최종 판단"],["교육 상태 대시보드","교육 대기·진행·확인 필요 상태를 업무 화면에서 조회"],["표준자료 승인 흐름","실제 운영 전 병원 승인 자료만 발행하도록 관리하는 차기 과제"],["종이·오프라인 대체","디지털 이용이 어려운 환자를 위한 대면·인쇄 대체 경로"],["사용성·효과 평가","교육 시간, 누락, 이해도, 만족도 등을 비교 연구로 측정"]];
-return '<div class="eyebrow">COURSE WORKSHEET · STEP 3</div><h1>아이디어 내기</h1><p class="lead">입·퇴원 교육을 표준화하면서도 간호사의 임상적 판단과 환자의 개별 요구를 유지하는 방향으로 구상했습니다.</p>'
-+'<section class="card"><h2>HMW 발상 질문</h2><p style="font-size:19px;font-weight:750;color:var(--ink)">어떻게 하면 입·퇴원이 잦은 병동의 간호사가 반복적인 설명에 쓰는 시간을 줄이면서, 환자 특성에 맞는 교육을 누락 없이 제공하고 실제 이해 여부까지 확인할 수 있을까?</p></section>'
-+'<section class="section"><h2>브레인라이팅 아이디어 8개 <span class="tag">조원 의견 추가 예정</span></h2><div class="ideas">'+ideas.map(function(a,i){return '<div class="idea"><b>'+(i+1)+'. '+a[0]+'</b><div class="small">'+a[1]+'</div></div>'}).join('')+'</div></section>'
-+'<section class="section evidence"><div class="card"><h3>문헌에서 확인되는 원칙</h3><p class="small">건강정보를 이해하기 쉽게 제공하고, 교육 내용을 대화로 확인하도록 권고하는 자료가 있습니다. 이 근거를 MVP 설계에 사용했습니다.</p><ul class="list"><li>AHRQ: Teach-back으로 환자 이해 확인</li><li>AHRQ: 교육자료는 대화와 이해 확인의 보조수단</li><li>CDC: 핵심 메시지와 쉬운 언어, 정보 구조화</li></ul></div><div class="card"><h3>서비스 자체의 기대효과 (미검증)</h3><p class="small">교육 시간 절감, 반복 설명 감소, 교육 누락 감소, 교육 이해도 상승, 간호사 부담 완화는 아직 측정하지 않았습니다.</p><div class="note amber">본 시제품의 임상 효과나 안전성을 입증하는 데이터는 없습니다. 실제 환자 대상 사용 전 검증과 승인이 필요합니다.</div></div></section>'
-+'<section class="section card"><h2>구현 범위와 한계</h2><p>구현: 가상 환자 선택, 교육 항목 설정, 브라우저 음성 안내, 크기·속도·대비 조정, 자기 점검, 간호사 구두 확인 화면.</p><p>미구현: 실제 EMR 연동, 로그인·권한, 의료진 검토·승인 시스템, 공식 간호기록, 개인정보 보호 검증, 다국어, 의료기관 임상 검증, 실제 처방별 분기.</p><p>보안: 실제 데이터 전송·서버 저장은 없으며 새로고침 시 시연 상태가 초기화됩니다. 민감정보를 입력하지 마세요.</p></section>'
-+'<section class="section card"><h2>참고문헌 (APA 7판)</h2><div class="citation">Agency for Healthcare Research and Quality. (2024). <em>Health literacy universal precautions toolkit</em> (3rd ed.). <a target="_blank" rel="noopener noreferrer" href="https://www.ahrq.gov/health-literacy/improve/precautions/toolkit.html">AHRQ</a></div><div class="citation">Agency for Healthcare Research and Quality. (2024). <em>Use the teach-back method: Tool 5</em>. <a href="https://www.ahrq.gov/health-literacy/improve/precautions/tool5.html" target="_blank" rel="noopener noreferrer">AHRQ</a></div><div class="citation">Agency for Healthcare Research and Quality. (2024). <em>Use health education material effectively: Tool 12</em>. <a href="https://www.ahrq.gov/health-literacy/improve/precautions/tool12.html" target="_blank" rel="noopener noreferrer">AHRQ</a></div><div class="citation">Centers for Disease Control and Prevention. (n.d.). <em>The CDC clear communication index</em>. <a href="https://www.cdc.gov/ccindex/" target="_blank" rel="noopener noreferrer">CDC</a></div></section>'+footer();
+var ideas=[["교육 모듈 조합","공통·진료과·상황별 교육을 조합하여 누락 위험을 낮추도록 설계"],["환자 맞춤형 화면","큰 글씨·고대비·음성 속도 설정을 환자가 직접 조절"],["한 번에 한 주제","카드형 단계별 설명으로 인지적 부담을 줄이도록 구성"],["반복 듣기","음성 읽기·일시정지·재청취로 교육 보조"],["이해 여부 자기 점검","모르는 항목·질문을 간호사에게 전달"],["간호사 Teach-back","환자의 말로 설명하도록 요청하고 간호사가 직접 확인"],["교육 진행 현황","대기·진행·확인 필요 등 상태를 한눈에 표시"],["승인자료 관리 (후속)","병원 승인 교육자료와 개정 이력 관리, 실제 구현 전 검토"]];
+var tabs='<div class="about-tabs" role="tablist" aria-label="아이디어와 근거 보기"><button class="about-tab '+(state.aboutTab==="ideas"?"active":"")+'" data-about="ideas" role="tab" aria-selected="'+(state.aboutTab==="ideas")+'">아이디어</button><button class="about-tab '+(state.aboutTab==="roadmap"?"active":"")+'" data-about="roadmap" role="tab" aria-selected="'+(state.aboutTab==="roadmap")+'">기능 우선순위</button><button class="about-tab '+(state.aboutTab==="evidence"?"active":"")+'" data-about="evidence" role="tab" aria-selected="'+(state.aboutTab==="evidence")+'">근거·한계</button></div>';
+var h='<div class="eyebrow">WORKSHEET · STEP 3</div><h1>아이디어와 설계 근거</h1><p class="lead">3조 문제정의 워크시트와 디자인 시연을 연결한 자료예요. 조원 의견에 따라 브레인라이팅 목록을 확장할 수 있습니다.</p>'
++'<section class="card"><div class="eyebrow">HOW MIGHT WE?</div><p style="font-weight:750;font-size:16px;color:var(--ink);margin:8px 0 3px">어떻게 하면 입·퇴원 교육을 반복하는 간호사의 부담을 줄이면서도, 환자별 주의사항을 빠짐없이 전달하고 실제 이해 여부를 확인할 수 있을까?</p></section>'+tabs;
+if(state.aboutTab==="ideas")h+='<section class="ideas" role="tabpanel">'+ideas.map(function(a,i){return '<div class="idea"><b>'+(i+1)+'. '+a[0]+'</b><div class="small">'+a[1]+'</div></div>'}).join('')+'</section><div class="note" style="margin-top:12px">조원 의견을 추가할 수 있는 초기 브레인라이팅 초안입니다. 교육 효과가 확인되었다는 뜻은 아닙니다.</div>';
+if(state.aboutTab==="roadmap")h+='<section class="card" role="tabpanel"><h2>기능 우선순위</h2><div class="idea"><b>P0 · 현재 동작</b><div class="small">환자·교육 모듈 선택, 음성·접근성 설정, 환자 이해 여부 응답, 간호사 구두 확인, 진행 상태 표시</div></div><div class="idea" style="margin-top:9px"><b>P1 · 다음 개발 후보</b><div class="small">교육 승인·개정 관리, 인쇄 및 보호자 안내, 다국어 안내, 사용성 테스트, 교육자료 콘텐츠 검토</div></div><div class="idea" style="margin-top:9px"><b>P2 · 실제 기관 도입 검토</b><div class="small">EMR 연동, 권한관리·로그, 민감정보 보안·개인정보 보호, 환자별 공식 처방 연동</div></div></section>';
+if(state.aboutTab==="evidence")h+='<section class="evidence" role="tabpanel"><div class="card"><span class="tag">문헌 기반 설계 원칙</span><h3 style="margin-top:11px">쉽게 설명하고, 실제 이해를 확인</h3><p class="small">AHRQ의 건강정보 이해능력 지침은 이해하기 쉬운 자료와 Teach-back을 통해 환자가 이해한 내용을 확인하는 접근을 안내합니다.</p><p class="small">CDC Clear Communication Index는 핵심 메시지, 쉬운 문구, 읽기 쉬운 자료 구조 등을 강조합니다.</p><div class="citation"><a target="_blank" rel="noopener noreferrer" href="https://www.ahrq.gov/health-literacy/improve/precautions/toolkit.html">AHRQ Health Literacy Toolkit ↗</a></div><div class="citation"><a target="_blank" rel="noopener noreferrer" href="https://www.ahrq.gov/health-literacy/improve/precautions/tool5.html">AHRQ Teach-back Tool ↗</a></div></div><div class="card"><span class="tag warn">미검증 기대효과</span><h3 style="margin-top:11px">프로그램 자체의 효과는 검증 전</h3><p class="small">간호사 반복 설명시간·업무 부담 감소, 교육 내용 누락 감소, 환자 이해도 향상은 기대효과이며 실측·대조 연구가 없습니다.</p><div class="note amber">실제 임상 적용에는 기관 교육자료 승인, 안전성·개인정보 보호 검토, 접근성 및 사용성 평가가 필요합니다.</div><div class="citation" style="margin-top:9px"><a target="_blank" rel="noopener noreferrer" href="https://www.cdc.gov/ccindex/">CDC Clear Communication Index ↗</a></div></div></section>';
+return h+footer();
 }
+
+function showHelp(){
+var old=document.getElementById("guide-overlay");if(old)old.remove();
+var box=document.createElement("div");box.className="overlay";box.id="guide-overlay";
+box.innerHTML='<div class="dialog" role="dialog" aria-modal="true" aria-label="CareBridge EDU 사용 안내"><div class="row between"><div><div class="eyebrow">QUICK GUIDE</div><h2>1분 사용 안내</h2></div><button class="btn small subtle" data-action="close-help" aria-label="사용 안내 닫기">✕ 닫기</button></div>'
++'<p>처음 사용한다면 순서대로 버튼을 눌러보세요.</p>'
++'<div class="guide-line"><span>1</span><div><b>간호사 · 환자와 교육 주제를 선택</b><p>의료진 메뉴에서 환자 A/B/C를 선택하고 교육 모듈을 체크해요.</p></div></div>'
++'<div class="guide-line"><span>2</span><div><b>환자 · 내용을 읽고 듣기</b><p>환자 교육 메뉴에서 글씨 크기·읽기 속도를 조절하고 다음 안내로 이동해요.</p></div></div>'
++'<div class="guide-line"><span>3</span><div><b>이해 확인 · 간호사가 마무리</b><p>환자가 재설명 요청을 표시하면 간호사가 직접 질문하고 구두 확인합니다.</p></div></div>'
++'<div class="note amber" style="margin-top:9px">이용자는 가상 환자만 선택할 수 있습니다. 실제 환자정보와 병원 처방을 입력하거나 적용하지 마세요.</div>'
++'<div class="row between" style="margin-top:17px"><button class="btn ghost" data-action="close-help">안내 닫기</button><button class="btn" data-action="help-start">의료진 화면 시작하기 →</button></div></div>';
+document.body.appendChild(box);
+box.querySelector('[data-action="close-help"]').focus();
+}
+function closeHelp(){var box=document.getElementById("guide-overlay");if(box)box.remove()}
+function notify(message){
+var prior=document.getElementById("ui-toast");if(prior)prior.remove();
+var el=document.createElement("div");el.className="toast";el.id="ui-toast";el.setAttribute("role","status");el.textContent=message;document.body.appendChild(el);
+setTimeout(function(){if(el.isConnected)el.remove()},2600);
+}
+
 function render(){
 document.querySelectorAll(".nav button").forEach(function(b){var yes=b.getAttribute("data-nav")===state.page;b.classList.toggle("active",yes);if(yes)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
 app.innerHTML=({home:home,nurse:nurse,patient:patientPage,review:review,about:about}[state.page]||home)();
+app.classList.remove("page-enter");void app.offsetWidth;app.classList.add("page-enter");
 }
 function speak(){var p=patient(),mods=selectedModules(),m=mods[Math.min(state.index,mods.length-1)];if(!m)return;if(!("speechSynthesis" in window)){alert("현재 브라우저는 음성 읽기를 지원하지 않습니다.");return}stopSpeech();var u=new SpeechSynthesisUtterance(m.title+". "+m.text);u.lang="ko-KR";u.rate=state.speed;u.pitch=1;u.onend=function(){state.listening=false};u.onerror=function(){state.listening=false};window.speechSynthesis.speak(u);state.listening=true}
 document.addEventListener("click",function(e){
 var b=e.target.closest("button");if(!b)return;
-if(b.dataset.nav){jump(b.dataset.nav);return}
+if(b.dataset.nav){closeHelp();jump(b.dataset.nav);return}
 if(b.dataset.patient){setPatient(b.dataset.patient);return}
 if(b.dataset.font){state.font=b.dataset.font;render();return}
 if(b.dataset.speed){state.speed=Number(b.dataset.speed);stopSpeech();render();return}
-var a=b.dataset.action;if(!a)return;
+var a=b.dataset.action;
+if(a==="toggle-sidebar"){state.collapsed=!state.collapsed;document.getElementById("shell").classList.toggle("is-collapsed",state.collapsed);b.setAttribute("aria-expanded",String(!state.collapsed));b.setAttribute("aria-label",state.collapsed?"사이드바 펼치기":"사이드바 접기");b.title=state.collapsed?"사이드바 펼치기":"사이드바 접기";return}
+if(a==="show-help"){showHelp();return}
+if(a==="close-help"){closeHelp();return}
+if(a==="help-start"){closeHelp();jump("nurse");return}
+if(b.dataset.about){state.aboutTab=b.dataset.about;render();return}
+if(a==="select-all"){state.selected[state.active]=patient().modules.map(function(m){return m.id});prog().answers={};prog().completed=false;prog().verified=false;prog().status="wait";state.phase="intro";render();notify("모든 교육 모듈을 선택했어요.");return}
+if(a==="reset-demo"){DATA.forEach(function(p){state.selected[p.id]=p.modules.map(function(m){return m.id});state.progress[p.id]={status:"wait",answers:{},question:"",completed:false,verified:false};state.notes[p.id]=""});state.phase="intro";state.index=0;render();notify("가상 환자 시연 상태를 초기화했어요.");return}
+if(!a)return;
 var pr=prog(),mods=selectedModules();
 if(a==="contrast"){state.contrast=!state.contrast;render()}
 else if(a==="begin"||a==="start-reading"){if(!mods.length)return;pr.status="progress";pr.completed=false;pr.verified=false;pr.answers={};pr.question="";state.phase="reading";state.index=0;jump("patient")}
@@ -141,11 +194,13 @@ else if(a==="stop-speech")stopSpeech();
 else if(a==="prev"){stopSpeech();state.index=Math.max(0,state.index-1);render()}
 else if(a==="next"){stopSpeech();if(state.index<mods.length-1)state.index++;else state.phase="check";render()}
 else if(a==="back-to-reading"){var q=document.getElementById("patient-question");if(q)pr.question=q.value;state.phase="reading";state.index=Math.max(0,mods.length-1);render()}
-else if(a==="submit-check"){var q=document.getElementById("patient-question");if(q)pr.question=q.value;if(mods.some(function(m){return !pr.answers[m.id]})){var v=document.getElementById("validation");if(v)v.textContent="모든 교육 주제에 응답해 주세요.";return}pr.completed=true;pr.status="review";pr.verified=false;state.phase="finished";render()}
+else if(a==="submit-check"){var q=document.getElementById("patient-question");if(q)pr.question=q.value;if(mods.some(function(m){return !pr.answers[m.id]})){var v=document.getElementById("validation");if(v)v.textContent="모든 교육 주제에 응답해 주세요.";return}pr.completed=true;pr.status="review";pr.verified=false;state.phase="finished";render();notify("간호사 구두 확인이 필요해요.")}
 else if(a==="review-again"){pr.completed=false;pr.status="progress";pr.verified=false;state.phase="reading";state.index=0;render()}
-else if(a==="needs"){if(!pr.completed)return;var note=document.getElementById("nurse-note");if(note)state.notes[patient().id]=note.value;pr.status="needs";pr.verified=false;render()}
-else if(a==="verify"){if(!pr.completed)return;var checks=Array.from(document.querySelectorAll(".teachcheck"));if(checks.some(function(c){return !c.checked})){var warn=document.getElementById("review-validation");if(warn)warn.textContent="각 교육 주제에 대한 구두 확인을 모두 완료한 후 표시해 주세요.";return}var note2=document.getElementById("nurse-note");if(note2)state.notes[patient().id]=note2.value;pr.status="verified";pr.verified=true;render()}
+else if(a==="needs"){if(!pr.completed)return;var note=document.getElementById("nurse-note");if(note)state.notes[patient().id]=note.value;pr.status="needs";pr.verified=false;render();notify("추가 설명이 필요한 상태로 표시했어요.")}
+else if(a==="verify"){if(!pr.completed)return;var checks=Array.from(document.querySelectorAll(".teachcheck"));if(checks.some(function(c){return !c.checked})){var warn=document.getElementById("review-validation");if(warn)warn.textContent="각 교육 주제에 대한 구두 확인을 모두 완료한 후 표시해 주세요.";return}var note2=document.getElementById("nurse-note");if(note2)state.notes[patient().id]=note2.value;pr.status="verified";pr.verified=true;render();notify("간호사 구두 확인 완료로 표시했어요.")}
 });
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHelp()});
+document.addEventListener("click",function(e){if(e.target&&e.target.id==="guide-overlay")closeHelp()});
 document.addEventListener("change",function(e){
 var t=e.target;if(t.dataset.module){var id=t.dataset.module,items=state.selected[state.active];if(t.checked&&!items.includes(id))items.push(id);if(!t.checked)state.selected[state.active]=items.filter(function(x){return x!==id});prog().answers={};prog().completed=false;prog().verified=false;prog().status="wait";state.phase="intro";render()}
 if(t.dataset.answer){prog().answers[t.dataset.answer]=t.value}
