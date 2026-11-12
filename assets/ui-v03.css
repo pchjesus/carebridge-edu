@@ -49,3 +49,39 @@
 @media(max-width:720px){.product-hero{grid-template-columns:1fr;padding:24px 18px;gap:18px}.content .product-hero h1{font-size:clamp(36px,7.6vw,51px);line-height:1.2}.product-subtitle{max-width:540px}.product-visual{padding:0}.device-window{transform:none;max-width:485px;animation:none}.value-features{gap:3px}.value-feature{padding:5px 8px}.real-material{align-items:flex-start;flex-direction:column}.material-links{align-self:stretch;justify-content:space-between}.source-banner a{margin-left:0}}
 @media(max-width:450px){.product-actions{flex-direction:column;align-items:stretch}.product-actions .btn{width:100%}.product-proof{font-size:10px}.product-hero{padding:21px 15px}.value-strip{padding:20px 2px}.value-features{grid-template-columns:1fr;gap:9px}.value-feature{padding:5px 10px}.value-feature strong{display:inline;margin-left:12px}.value-feature p{padding-left:28px}.material-summary{align-items:flex-start;flex-direction:column;gap:8px}.material-links{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){.device-window{animation:none!important;transform:none!important}.device-action:hover{transform:none}}
+
+
+/* v0.3.1 — Quiet interactions: motion belongs ONLY to actual menu tab switches.
+   Controls respond immediately without ripple, hover movement, entrance or reflow animation. */
+:where(*,*::before,*::after){
+  animation:none!important;
+  transition:none!important;
+  scroll-behavior:auto!important;
+}
+html{scroll-behavior:auto!important;scrollbar-gutter:stable}
+:where(.btn,.nav button,.patient-row,.guide-step,.device-action,.about-tab,.patient-row):hover,
+:where(.btn,.nav button,.patient-row,.guide-step,.device-action,.about-tab):active{
+  transform:none!important;
+}
+:where(.device-window){transform:none!important}
+:where(.btn,.nav button,.guide-button,.switches button,.about-tab,.device-action,.patient-row):focus-visible{
+  outline:3px solid #285fcb;
+  outline-offset:3px;
+}
+:where(.switches button,.about-tab,.nav button,.btn,.guide-button,.device-action):active{
+  filter:none;
+}
+:where(.patient-row.selected,.switches button.selected,.about-tab.active){
+  border-color:#9cb8ec;
+}
+:where(.reader,.card,.device-window){backface-visibility:visible}
+#app.page-enter{
+  animation:tab-switch-fade .20s cubic-bezier(.2,.7,.2,1) both!important;
+}
+@keyframes tab-switch-fade{
+  from{opacity:.85;transform:translateY(4px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(prefers-reduced-motion:reduce){
+  #app.page-enter{animation:none!important}
+}
