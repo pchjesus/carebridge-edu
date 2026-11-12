@@ -77,3 +77,21 @@
 참고한 디자인 패턴: [Design Atlas](https://design.solhun.com/). 모든 소스는 자체 작성한 시연용 구현입니다.
 
 GitHub Pages는 저장소의 **main /(root)** 배포 설정을 통해 자동 게시됩니다. [배포된 시연 사이트](https://pchjesus.github.io/carebridge-edu/). 최종 배포 결과는 [Actions](https://github.com/pchjesus/carebridge-edu/actions)에서 확인합니다.
+
+
+## v0.3 — 제품 소개형 홈 및 문헌 기반 환자교육 시연 (2026-11-12)
+
+- **홈 정보 위계:** 서비스 목적 → 환자교육 체험 CTA → 간호사/환자/최종 확인 3단계 → 출처·검증상태.
+- **메인 시연:** 홈에서 “환자교육 실제 체험하기”를 누르면 가상 환자 D(58세, 외과병동, 복강경 담낭절제술 퇴원 전 안내)의 교육 카드가 즉시 실행됨.
+- **실제 내용:** 미국 NLM MedlinePlus·NHS 공개 자료를 참고해 재구성한 5개 교육 주제(회복·활동, 상처관리, 식사·배변, 약물·외래 확인, 경고 증상).
+- **가상 데이터:** 환자 D의 인적 특성과 진료 상황은 합성 사례이며 실제 의료정보·처방·진료일은 포함되지 않음.
+- **교육자료 파일:** [전체 환자교육 자료](materials/laparoscopic-cholecystectomy-discharge.html) — 별도 탭에서 확인하고 브라우저 인쇄/PDF로 저장 가능.
+- **출처·가상 구분:** 홈, 의료진 화면, 환자 화면, 교육문서에서 명시함.
+- **기존 기능 유지:** 환자 A/B/C, 교육 선택, 글씨·음성·고대비, 이해 확인, 간호사 구두 확인 및 상태표시.
+- **검증:** JS 문법 검사 및 DOM 기반 전체 교육 흐름 모의 검사. 실제 환자 대상 검증·전체 브라우저 시각 검사는 미수행.
+
+[환자교육 근거와 합성데이터 구분 문서](docs/EDUCATION_SOURCE_AND_SYNTHETIC_CASE.md)
+
+추가 근거문헌:
+- U.S. National Library of Medicine. (n.d.). *Gallbladder removal – laparoscopic – discharge*. MedlinePlus. https://medlineplus.gov/ency/patientinstructions/000117.htm
+- National Health Service. (n.d.). *Recovering from gallbladder removal*. https://www.nhs.uk/tests-and-treatments/gallbladder-removal/recovery/
